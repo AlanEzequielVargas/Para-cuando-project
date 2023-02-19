@@ -1,13 +1,13 @@
-import Link from 'next/link';
 
-export default function Home() {
+const HomePage: React.FC = () => {
+  
+
   return (
-    <>
-      <Link href="/">HOME</Link>
-      <Link href="/profile">PROFILE</Link>
-      <Link href="/brands">BRANDS</Link>
-      <Link href="/artists">ARTISTS</Link>
-      <Link href="/tournaments">TOURNAMENTS</Link>
-    </>
+    <div className="container mx-auto px-4">
+      <h1 className="text-2xl font-bold mb-4">Cards Slider</h1>
+      
+    </div>
   );
-}
+};
+
+export default HomePage;
