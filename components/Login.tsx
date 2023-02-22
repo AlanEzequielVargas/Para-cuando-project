@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <>
       {show && (
-        <div className="h-483px w-362px bg-zinc-800 text-white rounded-2xl p-5 grid grid-rows-auto gap-y-2 shadow-2xl absolute top-20 z-10">
+        <div className="h-483px w-362px bg-zinc-800 text-white rounded-2xl p-5 grid grid-rows-auto gap-y-2 shadow-2xl absolute top-20 right-20 z-10">
           <div className="h-5 flex justify-end">
             <span
               className="text-center rounded-full w-8 h-8 text-yellow-300 font-bold cursor-pointer"
