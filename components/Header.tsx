@@ -1,9 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
+import Login from './Login';
+import { useState } from 'react';
 
 
 const Header = () => {
   /* const imageUrl = '/screenshot-4.XtTX2'; */
+  const [login , setLogin] = useState(false)
 
   return (
     <div className="flex justify-center bg-black h-16">
@@ -15,8 +18,10 @@ const Header = () => {
           </svg>
           <p className='text-blue-600'>
             Crear publicación</p>
-          <p className='px-5'>Log In</p>
+          <p className='px-5 cursor-pointer' onClick={() => setLogin(!login)}>Log In</p>
           <p>Sign Up</p>
+          {login && <Login/>}
+          
         </div>
       </div>
     </div>
