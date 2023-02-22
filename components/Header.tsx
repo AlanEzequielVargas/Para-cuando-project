@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/* import Image from 'next/image'; */
 import React from 'react';/* 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { findIconDefinition, IconDefinition, IconLookup } from '@fortawesome/fontawesome-svg-core'; */
@@ -14,12 +14,12 @@ const Header = (/* { icon }: Props */) => {
   return (
     <div className="flex justify-center bg-black">
       <div className="container flex flex-row justify-between items-center pl-5 pr-5">
-        <Image
+        {/* <Image
           src="https://drive.google.com/file/d/1z8AS1vpCglN7HZegLQa04ZFqQT_XOuHH/view"
           alt="logo-para-cuando"
           width={50}
           height={50}
-        />
+        /> */}
         <div className='flex flex-row text-white text-sm'>
           <p className='text-blue-600'>{/* <FontAwesomeIcon icon={icon.fin}/> */} Crear publicación</p>
           <p className='px-5'>Log In</p>
