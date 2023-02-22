@@ -26,6 +26,12 @@ module.exports = {
         lg: '1200px',
         xl: '1536px',
       },
+      height: {
+        '483px': '30.188rem',
+      },
+      width: {
+        '362px': "22.625rem"
+      },
     },
     plugins: [],
   }
