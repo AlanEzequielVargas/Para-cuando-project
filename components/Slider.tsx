@@ -11,10 +11,10 @@ import Card from './Card';
 const Slider = () => {
   return (
     <Swiper
-      className="h-80"
+      className="h-auto overflow-scroll whitespace-nowrap"
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={50}
+      spaceBetween={0}
       slidesPerView={3}
       navigation
       pagination={{ clickable: true }}
