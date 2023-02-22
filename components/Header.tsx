@@ -1,6 +1,6 @@
 import React from 'react';
-/* import ImageComponent from './images/ImageComponent'; */
 import Image from 'next/image';
+
 
 const Header = () => {
   /* const imageUrl = '/screenshot-4.XtTX2'; */

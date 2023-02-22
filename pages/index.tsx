@@ -1,13 +1,13 @@
+import Slider from "@/components/Slider";
 
-const HomePage: React.FC = () => {
-  
 
+const Home = () => {
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-4">Cards Slider</h1>
-      
+    <div>
+      <Slider/>
     </div>
   );
 };
 
-export default HomePage;
+export default Home;
+
