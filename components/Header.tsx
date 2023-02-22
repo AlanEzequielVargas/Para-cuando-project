@@ -1,27 +1,20 @@
-/* import Image from 'next/image'; */
-import React from 'react';/* 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { findIconDefinition, IconDefinition, IconLookup } from '@fortawesome/fontawesome-svg-core'; */
+import React from 'react';
+import Image from 'next/image';
 
-/* interface Props {
-  icon: IconDefinition;
-} */
 
-/* const cofferLookup: IconLookup = { prefix: "fa-solid", iconName: "fa-coffee"}
-const coffeeIconDefinition: IconDefinition = findIconDefinition(coffeeLookup) */
+const Header = () => {
+  /* const imageUrl = '/screenshot-4.XtTX2'; */
 
-const Header = (/* { icon }: Props */) => {
   return (
-    <div className="flex justify-center bg-black">
+    <div className="flex justify-center bg-black h-16">
       <div className="container flex flex-row justify-between items-center pl-5 pr-5">
-        {/* <Image
-          src="https://drive.google.com/file/d/1z8AS1vpCglN7HZegLQa04ZFqQT_XOuHH/view"
-          alt="logo-para-cuando"
-          width={50}
-          height={50}
-        /> */}
-        <div className='flex flex-row text-white text-sm'>
-          <p className='text-blue-600'>{/* <FontAwesomeIcon icon={icon.fin}/> */} Crear publicación</p>
+        <Image src={"/pc.png"} alt={'remote image pc?'} width={50} height={50}/>
+        <div className='flex flex-row items-center text-white text-sm'>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-blue-600">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+          </svg>
+          <p className='text-blue-600'>
+            Crear publicación</p>
           <p className='px-5'>Log In</p>
           <p>Sign Up</p>
         </div>

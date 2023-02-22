@@ -6,10 +6,10 @@ const Card = () => {
     <div className="cursor-pointer flex flex-col w-60">
       <div className="w-80 h-80"> 
         <Image
-          src="https://i1.sndcdn.com/artworks-000099014804-p6qz2i-t500x500.jpg"
+          src={'/assets/chapulin.jpg'}
           alt="imagen de prueba"
-          width={500}
-          height={500}
+          width={100}
+          height={50}
         />
       </div>
       <div>
