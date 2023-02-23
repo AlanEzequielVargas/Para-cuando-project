@@ -26,8 +26,9 @@ const Header = () => {
               d="M12 6v12m6-6H6"
             />
           </svg>
-          <p className="text-blue-600">Crear publicación</p>
-          <p className="px-5">Log In</p>
+          <p className='text-blue-600'>
+            Crear publicación</p>
+          <p className='px-5'>Log In</p>
           <p>Sign Up</p>
         </div>
       </div>

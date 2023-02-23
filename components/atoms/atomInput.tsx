@@ -1,6 +1,6 @@
 import React from 'react';
 
-const atomInput = () => {
+const AtomInput: React.FC = () => {
   return (
     <div>
       <input type="text" />
@@ -8,4 +8,4 @@ const atomInput = () => {
   );
 };
 
-export default atomInput;
+export default AtomInput;
