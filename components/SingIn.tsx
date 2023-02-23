@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Login = () => {
+const SignIn = () => {
   const [show, setShow] = useState(true);
 
   return (
@@ -17,8 +17,8 @@ const Login = () => {
           </div>
 
           <div className="">
-            <h1>¡Hola!</h1>
-            <p>Inicie sesión con los datos que ingresó durante su registro.</p>
+            <h1>Todos Votamos :)</h1>
+            <p>Regístrate para ingresar.</p>
           </div>
 
           <div>
@@ -29,6 +29,24 @@ const Login = () => {
                 type="text"
                 placeholder="john.doe@gmail.com"
               />
+              <div className="flex flex-row gap-x-3">
+                <div>
+                  <legend>Nombre</legend>
+                  <input
+                    className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-white"
+                    type="password"
+                    placeholder="John"
+                  />
+                </div>
+                <div>
+                  <legend>Apellido</legend>
+                  <input
+                    className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-white"
+                    type="password"
+                    placeholder="Doe"
+                  />
+                </div>
+              </div>
               <legend>Contraseña</legend>
               <input
                 className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-white"
@@ -36,19 +54,14 @@ const Login = () => {
                 placeholder="***********"
               />
             </form>
-            <p className="text-center">
-              ¿Olvidaste tu contraseña?{' '}
-              <a className="text-yellow-300 underline" href="#">
-                Recupérala Aquí
-              </a>
-            </p>
+            
           </div>
           <div className="flex flex-col w-full m-auto">
             <button className="bg-yellow-300 text-BLACKLIGHT font-bold rounded-md h-10">
-              Iniciar sesión
+              Crear cuenta
             </button>
             <a className="text-yellow-300 underline m-auto" href="#">
-              O crear una cuenta
+              O inicia sesión
             </a>
           </div>
         </div>
@@ -57,4 +70,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
