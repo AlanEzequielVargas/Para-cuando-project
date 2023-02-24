@@ -28,9 +28,12 @@ module.exports = {
       },
       height: {
         '483px': '30.188rem',
+        "488px": "30.5rem",
+        "454": '454px'
       },
       width: {
-        '362px': "22.625rem"
+        '362px': "22.625rem",
+        '299' : '299px'
       },
     },
     plugins: [],
