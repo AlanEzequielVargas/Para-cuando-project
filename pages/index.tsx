@@ -1,15 +1,13 @@
-import Hero from "@/components/Hero";
-import Slider from "@/components/Slider";
-
+import Hero from '@/components/Hero';
+import Slider from '@/components/Slider';
 
 const Home = () => {
   return (
     <div>
-      <Hero/>
-      <Slider/>
+      <Hero />
+      <Slider />
     </div>
   );
 };
 
 export default Home;
-
