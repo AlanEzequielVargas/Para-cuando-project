@@ -10,7 +10,7 @@ import ButtonNext from './svgs/ButtonNext';
 const Slider = () => {
 
   return (
-    <div className="w-full m-auto lg:w-11/12">
+    <div className="w-full m-auto lg:w-11/12 mt-10">
       <div>
         <div className="pl-0.5 max-lg:pl-10">
           <h1 className="font-bold">Title 1</h1>
