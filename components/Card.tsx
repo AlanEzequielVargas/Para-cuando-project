@@ -4,7 +4,7 @@ import IconPersonMini from './svgs/IconPersonMini';
 
 const Card = () => {
   return (
-    <div
+<div
       id="card"
       className="cursor-pointer flex flex-col justify-between w-299 h-454 ml-auto mr-auto mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10"
     >
