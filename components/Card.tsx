@@ -1,12 +1,14 @@
 import Image from 'next/image';
-import IconGrayHeart from './svgs/IconGrayHeart';
+import IconHeart from './svgs/IconHeart';
 import IconPersonMini from './svgs/IconPersonMini';
 
-const Card = () => {
+interface ICard extends React.ComponentPropsWithoutRef<'svg'> {}
+
+const Card: React.FC<ICard> = ({ ...iconProps }) => {
   return (
     <div
       id="card"
-      className="cursor-pointer flex flex-col justify-between w-299 h-454 ml-auto mr-auto mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10"
+      className="border flex flex-col justify-between w-299 h-454 ml-auto mr-auto mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 max-sm:w-373 max-sm:w-454"
     >
       <div className="w-full h-2/4 bg-black">
         <Image
@@ -17,7 +19,7 @@ const Card = () => {
           height={100}
         />
         <div className="h-2 flex justify-end items-center pr-5">
-          <IconGrayHeart />
+          <IconHeart className="absolute cursor-pointer" {...iconProps}/>
         </div>
       </div>
 
@@ -28,8 +30,8 @@ const Card = () => {
           vel temporibus
         </p>
       </div>
-      <div className="pl-5 pr-5 pb-5">
-        <p className="text-blue-600 pb-2">ladygaga.com</p>
+      <div className="pl-5 pr-5 pb-5 space-y-2">
+        <a className="text-blue-600 pb-2 cursor-pointer font-semibold">ladygaga.com</a>
         <div className="flex">
           <IconPersonMini />
           <p>10.000.000 Votes</p>
