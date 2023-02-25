@@ -1,11 +1,13 @@
+import Input from "@/components/atoms/Input";
 import Hero from "@/components/Hero";
 import Slider from "../components/Slider";
 
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <Hero/>
       <Slider/>
+      <Input/>
     </div>
   );
 };
