@@ -50,16 +50,16 @@ const Slider = () => {
               <PrevButton/>
             </div>
             <SwiperSlide>
-              <Card />
+              <Card fill="#D9D9D9"/>
             </SwiperSlide>
             <SwiperSlide>
-              <Card />
+              <Card fill="#D9D9D9"/>
             </SwiperSlide>
             <SwiperSlide>
-              <Card />
+              <Card fill="#D9D9D9"/>
             </SwiperSlide>
             <SwiperSlide>
-              <Card />
+              <Card fill="#D9D9D9"/>
             </SwiperSlide>
             <div id='arrow' className='absolute right-0 top-60 z-30 max-lg:hidden'>
               <NextButton/>
