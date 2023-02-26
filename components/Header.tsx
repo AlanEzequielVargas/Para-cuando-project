@@ -1,7 +1,9 @@
-import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <div className="flex justify-center bg-black h-16">
       <div className="container flex flex-row justify-between items-center pl-5 pr-5">
@@ -12,23 +14,27 @@ const Header = () => {
           height={50}
         />
         <div className="flex flex-row items-center text-white text-sm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6 text-blue-600"
+          <button
+            className="flex items-center"
+            onClick={() => router.push('/post')}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v12m6-6H6"
-            />
-          </svg>
-          <p className='text-blue-600'>
-            Crear publicación</p>
-          <p className='px-5'>Log In</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6 text-blue-600 mr-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6v12m6-6H6"
+              />
+            </svg>
+            <p className="text-blue-600">Crear publicación</p>
+          </button>
+          <p className="px-5">Log In</p>
           <p>Sign Up</p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import Input from "@/components/atoms/Input";
+import CategoriesBar from "@/components/CategoriesBar";
 import Hero from "@/components/Hero";
 import Slider from "../components/Slider";
 
@@ -7,10 +7,11 @@ const Home = () => {
     <div className="">
       <Hero/>
       <Slider/>
-      <Input/>
+      <Slider/>
+      <CategoriesBar/>
+      <Slider/>
     </div>
   );
 };
 
 export default Home;
-

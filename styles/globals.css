@@ -1,11 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "~swiper/css";
-@import "~swiper/css/navigation";
-@import "~swiper/css/pagination";
-
-
+@import '~swiper/css';
+@import '~swiper/css/navigation';
+@import '~swiper/css/pagination';
 
 @layer base {
   h1 {
@@ -31,9 +29,21 @@
   }
 }
 
-.background-footer{
+.background-footer {
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../public/assets/footer-image.jpg");
+  background-image: url('../public/assets/footer-image.jpg');
+}
+
+aside {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+}
+
+.main-form_post {
+  margin-left: 20%;
 }
