@@ -1,11 +1,15 @@
-import Hero from '@/components/Hero';
-import Slider from '@/components/Slider';
+import CategoriesBar from "@/components/CategoriesBar";
+import Hero from "@/components/Hero";
+import Slider from "../components/Slider";
 
 const Home = () => {
   return (
-    <div>
-      <Hero />
-      <Slider />
+    <div className="">
+      <Hero/>
+      <Slider/>
+      <Slider/>
+      <CategoriesBar/>
+      <Slider/>
     </div>
   );
 };
