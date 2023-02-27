@@ -22,7 +22,7 @@ const ArtistInfo = () => {
             </div>
           </div>
           <div className='max-md:hidden'>
-            <ButtonAction />
+            <ButtonAction name='Votar'/>
           </div>
           
         </div>
@@ -34,7 +34,7 @@ const ArtistInfo = () => {
           height={100}
         />
         <div className='md:hidden'>
-            <ButtonAction />
+            <ButtonAction name='Votar'/>
         </div>
       </div>
     

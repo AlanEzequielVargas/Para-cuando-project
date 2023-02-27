@@ -9,9 +9,9 @@ const SearchNavBar = () => {
         className="h-24 flex justify-evenly items-center shadow-md max-sm:justify-evenly"
       >
         <div className="w-96 flex justify-evenly max-sm:hidden">
-          <ButtonSection />
-          <ButtonSection />
-          <ButtonSection />
+          <ButtonSection name='Section'/>
+          <ButtonSection name='Section'/>
+          <ButtonSection name='Section'/>
         </div>
         <div className="h-11 w-11 rounded-full sm:hidden">
           <IconMenu />
