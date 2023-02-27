@@ -1,7 +1,16 @@
+import ArtistInfo from '@/components/ArtistInfo';
+import CategoriesBar from '@/components/CategoriesBar';
+import SearchNavBar from '@/components/SearchNavbar';
+import Slider from '@/components/Slider';
+
+
 export default function details() {
   return (
     <>
-      <div className="bg-red-200">DETAIlS</div>
+      <SearchNavBar/>
+      <ArtistInfo/>
+      <CategoriesBar/>
+      <Slider />
     </>
   );
 }

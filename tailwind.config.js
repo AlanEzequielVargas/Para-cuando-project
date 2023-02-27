@@ -17,7 +17,10 @@ module.exports = {
         'GRAY': '#A7A6A7',
         'GRAY LIGHTER': '#F8F7FA',
         'GRAY LIGHT': '#D9D9D9',
-        'RED': '#EF3F47'
+        'RED': '#EF3F47',
+        'grey': '#F8F7FA',
+        'grey2': '#6E6A6C',
+        
       },
       screens: {
         xs: '375px',
@@ -29,10 +32,34 @@ module.exports = {
       height: {
         '483px': '30.188rem',
         "488px": "30.5rem",
+        "454": '454px',
+        "550": '550px',
+        '560': '560px',
+        '529': '529px',
+        '381': '381px',
+        '700': '700px',
+        '208': '208px',
+        '129': '129px',
+        '117': '117px',
+
+
       },
       width: {
-        '362px': "22.625rem"
+        '362px': "22.625rem",
+        '299' : '299px',
+        '539': '539px',
+        '557': '557px',
+        '380': '380px',
+        '117': '117px',
+        '373': '373px',
+        '378': '378px'
       },
+      gridTemplateRows: {
+        // Simple 8 row grid
+        '8': 'repeat(8, minmax(0, 1fr))',
+
+        
+      }
     },
     plugins: [],
   }
