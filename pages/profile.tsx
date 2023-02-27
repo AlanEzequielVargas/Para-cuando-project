@@ -3,7 +3,10 @@ import ButtonSection from '@/components/atoms/ButtonSection';
 import Card from '@/components/Card';
 import Image from 'next/image';
 
-export default function details() {
+
+export default function profile() {
+
+
   return (
     <>
       <div className="bg-BLUE w-full h-129 relative flex justify-center">

@@ -17,6 +17,7 @@ module.exports = {
         'GRAY': '#A7A6A7',
         'GRAY LIGHTER': '#F8F7FA',
         'GRAY LIGHT': '#D9D9D9',
+        'GRAY2': '#D9D9D9',
         'RED': '#EF3F47',
         'grey': '#F8F7FA',
         'grey2': '#6E6A6C',
@@ -41,6 +42,7 @@ module.exports = {
         '208': '208px',
         '129': '129px',
         '117': '117px',
+        '152': '152px',
 
 
       },
@@ -52,7 +54,9 @@ module.exports = {
         '380': '380px',
         '117': '117px',
         '373': '373px',
-        '378': '378px'
+        '378': '378px',
+        '640': '640px',
+        '300': '300px'
       },
       gridTemplateRows: {
         // Simple 8 row grid
