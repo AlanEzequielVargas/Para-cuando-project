@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -78,20 +79,43 @@ const FormNewPublication = () => {
   };
 
   return (
-    <>
-      <div className="h-2 bg-gray-300 rounded-full overflow-hidden w-1/2 mx-auto text-center flex items-center mt-4">
-        <div
-          className={`h-full bg-blue-500 transition-all duration-500 ease-in-out ${
-            step === 2 ? 'w-full' : 'w-1/2'
-          }`}
-        ></div>
+    <form className="p-2 w-full" onSubmit={handleSubmit(onSubmit)}>
+      {step === 1 && (
+        <Link
+          href={'/'}
+          className="text-blue-800 mb-10 h-36 font-semibold text-lg"
+          style={{ color: '#1B4DB1' }}
+        >
+          Back
+        </Link>
+      )}
+      {step === 2 && (
+        <Link
+          href={'/post'}
+          onClick={() => setStep(1)}
+          className="text-blue-800 mb-10 h-36 font-semibold text-lg"
+          style={{ color: '#1B4DB1' }}
+        >
+          Back
+        </Link>
+      )}
+
+      <div className="sm:ml-20 sm:w-4/6 mt-10 sm:max-w-screen-sm">
+        <div className="h-2 bg-gray-300 rounded-full overflow-hidden mx-auto text-center flex items-center mt-4">
+          {' '}
+          <div
+            className={`h-full bg-blue-500 transition-all duration-500 ease-in-out ${
+              step === 1 ? 'w-1/2' : 'w-full'
+            }`}
+          ></div>
+        </div>
       </div>
 
-      <form className="p-10" onSubmit={handleSubmit(onSubmit)}>
-        {step === 1 && (
-          <>
-            <h1 className="text-2xl font-bold">Publicación</h1>
-            <p>Información básica</p>
+      {step === 1 && (
+        <div className="">
+          <div className="sm:ml-20 sm:w-4/6 mt-10 sm:max-w-screen-sm">
+            <h1 className="text-2xl font-bold mt-8">Publicación</h1>
+            <p className="text-gray-800 mt-2">Información básica</p>
             <div className="mb-4 mt-4 relative">
               <label
                 htmlFor="title"
@@ -103,22 +127,18 @@ const FormNewPublication = () => {
                 id="title"
                 {...register('title', { required: true })}
                 type="text"
-                className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm mt-3"
+                className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm mt-3"
                 onFocus={() => handleFocus('title')}
                 onBlur={() => handleBlur('title')}
               />
             </div>
-
             <div className="flex flex-col sm:flex-row mb-4">
-              <div className="w-full sm:w-1/2 sm:mr-2">
-                <label
-                  htmlFor="type"
-                  className="block mb-2 font-bold text-gray-700"
-                ></label>
+              <div className="w-full sm:w-1/2 sm:mr-2 text-gray-500">
+                <label htmlFor="type" className="block mb-2 font-bold"></label>
                 <select
                   id="type"
                   {...register('type', { required: true })}
-                  className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white"
                 >
                   <option value="">Tipo</option>
                   {types.map((type) => (
@@ -128,15 +148,15 @@ const FormNewPublication = () => {
                   ))}
                 </select>
               </div>
-              <div className="w-full sm:w-1/2 sm:ml-2 mt-2 sm:mt-0">
+              <div className="w-full sm:w-1/2 sm:ml-2 mt-2 sm:mt-0 text-gray-500 bg-white">
                 <label
                   htmlFor="category"
-                  className="block mb-2 font-bold text-gray-700"
+                  className="block mb-2 font-bold"
                 ></label>
                 <select
                   id="category"
                   {...register('category', { required: true })}
-                  className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white"
                 >
                   <option value="">Categoría</option>
                   {categories.map((category) => (
@@ -158,7 +178,7 @@ const FormNewPublication = () => {
                 id="whyRecommend"
                 {...register('whyRecommend', { required: true })}
                 rows={3}
-                className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm form-field mt-3"
+                className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm form-field mt-3"
                 onFocus={() => handleFocus('whyRecommend')}
                 onBlur={() => handleBlur('whyRecommend')}
               />
@@ -173,32 +193,41 @@ const FormNewPublication = () => {
                 id="referenceLink"
                 type="text"
                 {...register('referenceLink')}
-                className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm form-field mt-3"
+                className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm form-field mt-3"
                 onFocus={() => handleFocus('referenceLink')}
                 onBlur={() => handleBlur('referenceLink')}
               />
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-center py-5">
               <button
                 type="button"
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-800"
+                className="px-4 py-2 bg-blue-800 text-white rounded-full hover:bg-blue-500"
                 onClick={() => setStep(2)}
               >
                 Siguiente
               </button>
             </div>
-          </>
-        )}
-        {step === 2 && (
-          <>
-            <h1 className="font-bold">Fotos</h1>
-            <p>Selecciona máximo 3 fotos para crear una galería:</p>
-            <div className="border border-gray rounded-lg p-6 h-auto mt-8 w-2/3 mx-auto">
-              <div className="grid grid-cols-3 gap-4">
+          </div>
+        </div>
+      )}
+      {step === 2 && (
+        <>
+          <div className="sm:ml-20 sm:w-4/6 mt-10 sm:max-w-screen-sm">
+            <h1
+              className="pt-10 font-semibold mt-5"
+              style={{ color: '#1A1E2E' }}
+            >
+              Fotos
+            </h1>
+            <p className="mt-1 text-gray-600">
+              Selecciona máximo 3 fotos para crear una galería:
+            </p>
+            <div className="border border-gray-400 rounded-lg sm:p-6 p-2 h-auto mt-8 mx-auto">
+              <div className="grid grid-cols-3 sm:gap-4 gap-1">
                 {boxes.map((box) => (
                   <div
                     key={box}
-                    className="bg-gray-300 rounded-md flex justify-center items-center h-36 w-full relative cursor-pointer"
+                    className="bg-gray-300 flex justify-center items-center sm:h-36 h-28 w-full relative cursor-pointer"
                     onClick={handleBoxClick}
                   >
                     <div className="rounded-full h-10 w-10 font-bold text-2xl text-blue-500 flex justify-center items-center">
@@ -216,18 +245,18 @@ const FormNewPublication = () => {
                 ))}
               </div>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-center py-10 my-5">
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-800"
+                className="px-4 py-2 bg-blue-800 text-white rounded-full hover:bg-blue-500"
               >
                 Publicar
               </button>
             </div>
-          </>
-        )}
-      </form>
-    </>
+          </div>
+        </>
+      )}
+    </form>
   );
 };
 
