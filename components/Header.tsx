@@ -12,6 +12,8 @@ const Header = () => {
           alt={'remote image pc?'}
           width={50}
           height={50}
+          className="cursor-pointer"
+          onClick={() => router.push('/')}
         />
         <div className="flex flex-row items-center text-white text-sm">
           <button
