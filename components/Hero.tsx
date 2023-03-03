@@ -1,7 +1,9 @@
-import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Hero = () => {
+  const router = useRouter();
+
   return (
     <div className="relative h-[30.5rem] bg-[url('/assets/hero-background.jpg')] bg-cover bg-center">
       <div className="absolute w-full h-full text-white">
@@ -37,14 +39,23 @@ const Hero = () => {
               </svg>
             </div>
           </div>
-          <div className='flex flex-row justify-between w-96 pt-5 text-sm'>
-            <button className='bg-white text-gray-500 border-gray-500 h-7 rounded-2xl px-4'>
+          <div className="flex flex-row justify-between w-96 pt-5 text-sm">
+            <button
+              className="bg-white text-gray-500 border-gray-500 h-7 rounded-2xl px-4"
+              onClick={() => router.push('/brands')}
+            >
               Marcas y tiendas
             </button>
-            <button className='bg-white text-gray-500 border-gray-500 h-7 rounded-2xl px-4'>
+            <button
+              className="bg-white text-gray-500 border-gray-500 h-7 rounded-2xl px-4"
+              onClick={() => router.push('/artists')}
+            >
               Artistas y conciertos
             </button>
-            <button className='bg-white text-gray-500 border-gray-500 h-7 rounded-2xl px-4'>
+            <button
+              className="bg-white text-gray-500 border-gray-500 h-7 rounded-2xl px-4"
+              onClick={() => router.push('/tournaments')}
+            >
               Torneos
             </button>
           </div>
