@@ -10,7 +10,7 @@ import ButtonNext from './svgs/ButtonNext';
 const Slider = () => {
 
   return (
-    <div className="w-full m-auto lg:w-10/12 mt-10">
+    <div className="w-full m-auto lg:w-9/12 xl:w-8/12 mt-10">
       <div>
         <div className="lg:pl-14 max-lg:pl-16 max-sm:pl-10">
           <h1 className="font-bold">Title 1</h1>
@@ -46,7 +46,7 @@ const Slider = () => {
             onSlideChange={() => console.log('slide change')}
             style={{ position: 'unset' }}
           >
-            <div id='arrow' className='absolute left-0 top-60 z-30 transform -scale-x-100 max-lg:hidden'>
+            <div id='arrow' className='cursor-pointer absolute lg:-left-20 top-60 z-30 transform -scale-x-100 max-lg:hidden'>
               <PrevButton/>
             </div>
             <SwiperSlide>
@@ -61,7 +61,7 @@ const Slider = () => {
             <SwiperSlide>
               <Card fill="#D9D9D9"/>
             </SwiperSlide>
-            <div id='arrow' className='absolute right-0 top-60 z-30 max-lg:hidden'>
+            <div id='arrow' className='cursor-pointer absolute lg:-right-20 top-60 z-30 max-lg:hidden'>
               <NextButton/>
             </div>
           </Swiper>
