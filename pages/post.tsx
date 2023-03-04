@@ -6,7 +6,7 @@ import sloganPc from '../public/slogan-pc.svg';
 
 export default function post() {
   return (
-    <Layout noHeaderFooter>
+    <Layout noHeader noFooter>
       <div className="flex flex-col sm:flex-row h-screen">
         <aside
           style={{ backgroundColor: '#1B4DB1' }}
