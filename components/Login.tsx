@@ -1,12 +1,15 @@
 import LogoClose from './svgs/IconClose';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 interface IFormInput {
   email: String;
   password: String;
 }
 
 const Login = () => {
+  const router = useRouter();
+
   const { register, handleSubmit } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     if (data.email === 'jamir@example.com' && data.password === '12345') {
@@ -19,15 +22,18 @@ const Login = () => {
     }
     Swal.fire({
       icon: 'error',
-      title: "Error",
-      html: "<p>Email o password incorrecto.</p>"
-    })
+      title: 'Error',
+      html: '<p>Email o password incorrecto.</p>',
+    });
   };
 
   return (
     <>
       <div className="w-378 h-529 border bg-zinc-800/90 text-white rounded-2xl p-8 grid auto-rows-auto gap-y-2 shadow-2xl z-10 relative lg:w-557 lg:h-560 lg:pl-16 lg:pr-16">
-        <div className="h-10 w-h-10 absolute right-5 top-5">
+        <div
+          className="h-10 w-h-10 absolute right-5 top-5"
+          onClick={() => router.push('/')}
+        >
           <LogoClose />
         </div>
 
