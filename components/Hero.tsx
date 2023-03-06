@@ -1,39 +1,59 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import ButtonSection from './atoms/ButtonSection';
-import Input from './atoms/Input';
 
-const Hero = () => {
+
+const Header = () => {
   const router = useRouter();
+  
 
   return (
-    <div className="relative h-[30.5rem] bg-[url('/assets/hero-background.jpg')] bg-cover bg-center">
-      <div className="absolute w-full h-full text-white">
-        <div className="flex justify-center items-center flex-col h-full gap-y-5">
-          <Image
-            src={'/assets/para-cuando-logo.png'}
-            alt={'para-cuando-logo'}
-            width={250}
-            height={250}
-          />
-          <div className="relative w-[343px] sm:w-[465px]">
-            <Input/>
-          </div>
-          <div className="flex flex-row justify-around text-sm w-[362px] sm:w-[400px]">
-            <div onClick={() => router.push('/brands')}>
-              <ButtonSection name="Marcas y tiendas" style='h-8 px-1 sm:px-3'/>
-            </div>
-            <div onClick={() => router.push('/artists')}>
-              <ButtonSection name="Artistas y conciertos" style='h-8 px-1 sm:px-3'/>
-            </div>
-            <div onClick={() => router.push('/tournaments')}>
-              <ButtonSection name="Torneos" style='h-8 px-1 sm:px-3'/>
-            </div>
-          </div>
+    <div className="flex justify-center bg-black h-16">
+      <div className="container flex flex-row justify-between items-center pl-5 pr-5">
+        <Image
+          src={'/assets/pc.png'}
+          alt={'remote image pc?'}
+          width={50}
+          height={50}
+          className="cursor-pointer"
+          onClick={() => router.push('/')}
+        />
+        <div className="flex flex-row items-center text-white text-sm">
+          <button
+            className="flex items-center sm:flex"
+            onClick={() => router.push('/post')}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6 text-blue-600 mr-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6v12m6-6H6"
+              />
+            </svg>
+            <p className="text-blue-600">Crear publicación</p>
+          </button>
+          <p
+            className="px-5 hidden sm:block cursor-pointer"
+            onClick={() => router.push('/login')}
+          >
+            Log In
+          </p>
+          <p
+            className="px-5 hidden sm:block cursor-pointer"
+            onClick={() => router.push('/signup')}
+          >
+            Sign Up
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Hero;
+export default Header;
