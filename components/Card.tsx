@@ -8,7 +8,7 @@ const Card: React.FC<ICard> = ({ ...iconProps }) => {
   return (
 <div
       id="card"
-      className="cursor-pointer border flex flex-col justify-between w-299 h-454 ml-auto mr-auto mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10"
+      className="font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 max-sm:ml-5 max-md:ml-18 max-lg:ml-16 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10"
     >
       <div className="w-full h-2/4 bg-black">
         <Image
