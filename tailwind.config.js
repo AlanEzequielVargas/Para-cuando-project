@@ -67,7 +67,10 @@ module.exports = {
       },
       spacing: {
         '150px': '150px',
-      }
+      },
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'],
+      },
     },
     plugins: [],
   }

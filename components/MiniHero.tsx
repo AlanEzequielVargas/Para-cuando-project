@@ -1,22 +1,23 @@
-import Image from 'next/image';
+import React from 'react'
 
-const MiniHero = () => {
+
+interface HeroProps{
+  background: string;
+  title: string;
+  description: string;
+}
+
+const MiniHero: React.FC<HeroProps> = ({background,title,description}:HeroProps) => {
+  
+  
   return (
-    <div className="w-full">
-      <Image
-        src={'/assets/BrandsHero.png'}
-        alt=""
-        width={100}
-        height={100}
-        className="w-full h-208 relative"
-      />
-      <div className="absolute top-24 flex flex-col justify-between ml-40 mr-40 h-28 max-sm:mr-10 max-sm:ml-10 max-md:h-28">
+    <div style={{boxShadow: '10px 10px 400px 0px rgba(0,0,0,0.40) inset'}} className={`w-full h-208 relative ${background} bg-cover`}>
+      <div className="absolute top-5 flex flex-col justify-between ml-40 mr-40 h-28 max-sm:mr-10 max-md:ml-10 max-md:h-28 font-roboto">
         <h3 className="text-white">Ruta/ruta</h3>
         <div className="max-md:h-20">
-          <h1 className="text-YELLOW font-extrabold text-5xl">Titulo</h1>
+          <h1 className="text-YELLOW font-extrabold text-5xl">{title}</h1>
           <h3 className="text-white">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Repudiandae, dolores saepe assumenda molestias.
+            {description}
           </h3>
         </div>
       </div>
