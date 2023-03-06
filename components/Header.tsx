@@ -12,10 +12,12 @@ const Header = () => {
           alt={'remote image pc?'}
           width={50}
           height={50}
+          className="cursor-pointer"
+          onClick={() => router.push('/')}
         />
         <div className="flex flex-row items-center text-white text-sm">
           <button
-            className="flex items-center"
+            className="flex items-center hidden sm:flex"
             onClick={() => router.push('/post')}
           >
             <svg
@@ -34,8 +36,13 @@ const Header = () => {
             </svg>
             <p className="text-blue-600">Crear publicación</p>
           </button>
-          <p className="px-5">Log In</p>
-          <p>Sign Up</p>
+          <p
+            className="px-5 hidden sm:block cursor-pointer"
+            onClick={() => router.push('/login')}
+          >
+            Log In
+          </p>
+          <p className="px-5 hidden sm:block">Sign Up</p>
         </div>
       </div>
     </div>
