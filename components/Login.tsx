@@ -21,15 +21,17 @@ const Login = () => {
     }
     Swal.fire({
       icon: 'error',
-      title: "Error",
-      html: "<p>Email o password incorrecto.</p>"
-    })
+      title: 'Error',
+      html: '<p>Email o password incorrecto.</p>',
+    });
   };
 
   return (
     <>
+
       <div className="max-sm:w-350 max-sm:m-auto w-378 h-529 border bg-black/80 text-white rounded-2xl p-8 grid auto-rows-auto gap-y-2 shadow-2xl z-10 relative lg:w-557 lg:h-560 lg:pl-16 lg:pr-16">
         <div className="h-10 w-10 absolute right-3 top-3" onClick={() => router.push('/')}>
+
           <LogoClose />
         </div>
 
