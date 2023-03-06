@@ -59,6 +59,9 @@ module.exports = {
         '350': '350px',
         '300': '300px'
       },
+      minWidth: {
+        '220': "220px"
+      },
       gridTemplateRows: {
         // Simple 8 row grid
         '8': 'repeat(8, minmax(0, 1fr))',

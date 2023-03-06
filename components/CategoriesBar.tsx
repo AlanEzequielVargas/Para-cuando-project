@@ -9,9 +9,9 @@ const CategoriesBar = () => {
           gustos
         </h3>
         <div className="flex justify-evenly w-380 max-sm:w-auto">
-          <ButtonSection name='Category'/>
-          <ButtonSection name='Category'/>
-          <ButtonSection name='Category'/>
+          <ButtonSection name='Category' style="h-11 px-5"/>
+          <ButtonSection name='Category' style="h-11 px-5"/>
+          <ButtonSection name='Category' style="h-11 px-5"/>
         </div>
         <a href="#" className="text-BLUE font-bold">
           Ver todos los intereses
