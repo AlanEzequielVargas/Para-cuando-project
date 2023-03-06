@@ -1,7 +1,9 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
+import deleteImage from '../public/assets/delete.png';
 
 const FormNewPublication = () => {
   type FormValues = {
@@ -19,7 +21,7 @@ const FormNewPublication = () => {
       | 'Abastecimiento';
     whyRecommend: string;
     referenceLink: string;
-    images: FileList | null;
+    images: File[];
   };
 
   const types: Array<string> = [
@@ -40,17 +42,48 @@ const FormNewPublication = () => {
     'Abastecimiento',
   ];
 
-  const router = useRouter();
-
   const [step, setStep] = useState<number>(1);
 
-  // const [listFile, setListFile] = useState<File[]>([]);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const showAlert = () => {
+    Swal.fire({
+      icon: 'success',
+      title: '¡Listo!',
+      html: '<p>Tu publicación ha sido cargada exitosamente.</p>',
+      timer: 3000,
+    });
+  };
+
+  const { register, handleSubmit, reset, watch } = useForm<FormValues>();
   const onSubmit = (data: FormValues) => {
     console.log(data);
-    alert('Publicación realizada exitosamente.');
-    router.push('/');
+    showAlert();
+    setStep(1);
+    data.images = imageFiles;
+    setImageFiles([]);
+    reset();
+  };
+
+  const errorAlert = () => {
+    Swal.fire({
+      icon: 'error',
+      html: 'Todos los campos son requeridos para poder continuar.',
+    });
+  };
+
+  const errorNext = () => {
+    if (
+      !watch('title') ||
+      !watch('type') ||
+      !watch('category') ||
+      !watch('whyRecommend') ||
+      !watch('referenceLink')
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -61,7 +94,21 @@ const FormNewPublication = () => {
     }
   };
 
-  const boxes: Array<number> = [1, 2, 3];
+  const boxes: number[] = [1, 2, 3];
+
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const fileList: FileList | null = e.target.files;
+    if (fileList) {
+      const files = Array.from(fileList);
+      setImageFiles((prevImageFiles) => [...prevImageFiles, ...files]);
+    }
+  };
+
+  const handleRemoveImage = (index: number) => {
+    const newImageFiles = [...imageFiles];
+    newImageFiles.splice(index, 1);
+    setImageFiles(newImageFiles);
+  };
 
   const [labelClass, setLabelClass] = useState<string>('');
   const [selectedInput, setSelectedInput] = useState<string>('');
@@ -81,25 +128,26 @@ const FormNewPublication = () => {
   return (
     <form className="p-2 w-full" onSubmit={handleSubmit(onSubmit)}>
       {step === 1 && (
-        <Link
-          href={'/'}
-          className="text-blue-800 mb-10 h-36 font-semibold text-lg"
-          style={{ color: '#1B4DB1' }}
-        >
-          Back
+        <Link href="/" passHref legacyBehavior>
+          <a
+            className="text-blue-800 mb-10 h-36 font-semibold text-lg"
+            style={{ color: '#1B4DB1' }}
+          >
+            <button type="button">Back</button>
+          </a>
         </Link>
       )}
       {step === 2 && (
-        <Link
-          href={'/post'}
-          onClick={() => setStep(1)}
-          className="text-blue-800 mb-10 h-36 font-semibold text-lg"
-          style={{ color: '#1B4DB1' }}
-        >
-          Back
+        <Link href="/post" passHref legacyBehavior>
+          <a
+            className="text-blue-800 mb-10 h-36 font-semibold text-lg"
+            style={{ color: '#1B4DB1' }}
+            onClick={() => setStep(1)}
+          >
+            <button type="button">Back</button>
+          </a>
         </Link>
       )}
-
       <div className="sm:ml-20 sm:w-4/6 mt-10 sm:max-w-screen-sm">
         <div className="h-2 bg-gray-300 rounded-full overflow-hidden mx-auto text-center flex items-center mt-4">
           {' '}
@@ -202,7 +250,9 @@ const FormNewPublication = () => {
               <button
                 type="button"
                 className="px-4 py-2 bg-blue-800 text-white rounded-full hover:bg-blue-500"
-                onClick={() => setStep(2)}
+                onClick={() => {
+                  errorNext() ? errorAlert() : setStep(2);
+                }}
               >
                 Siguiente
               </button>
@@ -212,7 +262,7 @@ const FormNewPublication = () => {
       )}
       {step === 2 && (
         <>
-          <div className="sm:ml-20 sm:w-4/6 mt-10 sm:max-w-screen-sm">
+          <div className="md:ml-20 md:w-4/6 mt-10 md:max-w-screen-sm">
             <h1
               className="pt-10 font-semibold mt-5"
               style={{ color: '#1A1E2E' }}
@@ -222,25 +272,53 @@ const FormNewPublication = () => {
             <p className="mt-1 text-gray-600">
               Selecciona máximo 3 fotos para crear una galería:
             </p>
-            <div className="border border-gray-400 rounded-lg sm:p-6 p-2 h-auto mt-8 mx-auto">
+            <div className="border border-gray-400 rounded-lg md:p-6 p-2 h-auto mt-8 mx-auto">
               <div className="grid grid-cols-3 sm:gap-4 gap-1">
-                {boxes.map((box) => (
+                {boxes.map((box, i) => (
                   <div
                     key={box}
-                    className="bg-gray-300 flex justify-center items-center sm:h-36 h-28 w-full relative cursor-pointer"
+                    className="bg-gray-300 flex justify-center items-center sm:h-36 h-24 w-full relative cursor-pointer"
                     onClick={handleBoxClick}
                   >
-                    <div className="rounded-full h-10 w-10 font-bold text-2xl text-blue-500 flex justify-center items-center">
-                      +
-                    </div>
-                    <input
-                      type="file"
-                      multiple
-                      className="opacity-0 absolute inset-0 w-full h-full file-input cursor-pointer"
-                      {...register('images', {
-                        required: false,
-                      })}
-                    />
+                    {imageFiles[i] ? (
+                      <>
+                        <Image
+                          src={URL.createObjectURL(imageFiles[i])}
+                          alt={`Imagen ${i}`}
+                          width={200}
+                          height={200}
+                          className="h-full w-full object-cover"
+                        />
+                        <button
+                          type="button"
+                          className="absolute top-1 right-1 rounded-full"
+                          onClick={() => handleRemoveImage(i)}
+                        >
+                          <Image
+                            src={deleteImage}
+                            alt="delete"
+                            width={15}
+                            height={15}
+                            className="hover:w-5 hover:h-5"
+                          />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="rounded-full h-10 w-10 font-bold text-2xl text-blue-500 flex justify-center items-center">
+                          +
+                        </div>
+                        <input
+                          type="file"
+                          multiple
+                          className="opacity-0 absolute inset-0 w-full h-full file-input cursor-pointer"
+                          {...register(`images.${i}`, {
+                            required: false,
+                          })}
+                          onChange={handleImageUpload}
+                        />
+                      </>
+                    )}
                   </div>
                 ))}
               </div>
