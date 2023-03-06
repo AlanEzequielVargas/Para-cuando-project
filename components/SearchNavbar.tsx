@@ -22,7 +22,7 @@ const SearchNavBar = () => {
           <IconMenu />
         </div>
 
-        <div className="max-sm:w-72 ">
+        <div className="max-md:w-72 ">
           <Input />
         </div>
       </div>
