@@ -1,16 +1,18 @@
 import React from 'react';
 
-interface IIconHeart extends React.ComponentPropsWithoutRef<'svg'> {}
+interface IIconHeart {
+  fill: string
+}
 
-const IconHeart: React.FC<IIconHeart> = ({ ...svgProps }) => {
+const IconHeart: React.FC<IIconHeart> = ({fill}:IIconHeart) => {
   return (
     <svg
       width="49"
       height="49"
       viewBox="0 0 49 49"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...svgProps}
+      fill={fill}
+      className='cursor-pointer absolute'
     >
       <circle
         cx="24.5"
