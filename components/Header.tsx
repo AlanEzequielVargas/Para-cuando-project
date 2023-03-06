@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+
 const Header = () => {
   const router = useRouter();
+  
 
   return (
     <div className="flex justify-center bg-black h-16">
@@ -42,7 +44,12 @@ const Header = () => {
           >
             Log In
           </p>
-          <p className="px-5 hidden sm:block">Sign Up</p>
+          <p
+            className="px-5 hidden sm:block cursor-pointer"
+            onClick={() => router.push('/signup')}
+          >
+            Sign Up
+          </p>
         </div>
       </div>
     </div>

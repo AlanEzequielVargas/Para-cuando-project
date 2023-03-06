@@ -3,9 +3,9 @@ import Input from './atoms/Input';
 
 const Footer = () => {
   return (
-    <div className="flex justify-center items-center background-footer h-[30.188rem]">
-      <div className="mt-24 text-black">
-        <Input />
+    <div className='flex justify-center items-center background-footer h-[30.188rem]'>
+      <div className='relative w-[343px] sm:w-[465px]'>
+       <Input/>
       </div>
     </div>
   );

@@ -4,15 +4,16 @@ import Header from './Header';
 
 interface LayoutProps {
   children: ReactNode;
-  noHeaderFooter?: boolean;
+  noHeader?: boolean;
+  noFooter?: boolean;
 }
 
-export default function Layout({ children, noHeaderFooter }: LayoutProps) {
+export default function Layout({ children, noHeader, noFooter }: LayoutProps) {
   return (
     <>
-      {!noHeaderFooter && <Header />}
+      {!noHeader && <Header />}
       <main>{children}</main>
-      {!noHeaderFooter && <Footer />}
+      {!noFooter && <Footer />}
     </>
   );
 }

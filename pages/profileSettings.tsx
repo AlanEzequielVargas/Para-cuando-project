@@ -1,22 +1,25 @@
 import ButtonAction from '@/components/atoms/ButtonAction';
+import Layout from '@/components/Layout';
 import ButtonAdd from '@/components/svgs/ButtonAdd';
+import Image from 'next/image';
+import footerImage from '../public/assets/footer-image.jpg';
 
-export default function profile2() {
+export default function profileSettings() {
   return (
-    <>
+    <Layout noFooter>
       <div className="bg-BLUE w-full h-129 relative flex justify-center">
         <h1 className="text-white w-full mt-auto mb-auto ml-20 font-bold text-4xl">
           Perfil
         </h1>
       </div>
-      <div className="h-screen max-md:h-auto w-9/12 m-auto mt-20 mb-20 flex flex-col justify-between gap-y-12">
+      <div className="h-screen max-md:h-auto w-9/12 max-sm:w-11/12 m-auto mt-20 mb-20 flex flex-col justify-between gap-y-12">
         <div className="flex justify-between w-full max-md:flex-col">
           <div>
             <h1 className="mb-10">Información de contacto</h1>
             <ButtonAdd
               svgProps={{ className: 'w-220 h-206 rounded-2xl bg-GRAY2' }}
             />
-            <p className='max-md:text-center'>Agrega una foto de perfil</p>
+            <p className="max-md:text-center">Agrega una foto de perfil</p>
           </div>
 
           <div className="w-640 m-auto max-lg:w-96 max-md:w-full">
@@ -50,20 +53,23 @@ export default function profile2() {
         </div>
         <div>
           <h1 className="mb-10">Mis intereses</h1>
-          <div className="flex justify-between max-sm:flex-col max-md:items-center">
+          <div className="flex justify-between max-md:flex-col max-md:items-center">
             <ButtonAdd
               svgProps={{
-                className: 'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
+                className:
+                  'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
               }}
             />
             <ButtonAdd
               svgProps={{
-                className: 'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
+                className:
+                  'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
               }}
             />
             <ButtonAdd
               svgProps={{
-                className: 'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
+                className:
+                  'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
               }}
             />
           </div>
@@ -72,6 +78,11 @@ export default function profile2() {
           <ButtonAction name="Guardar cambios" />
         </div>
       </div>
-    </>
+      <Image
+        src={footerImage}
+        alt="image-footer"
+        className="w-full object-cover h-[200px]"
+      />
+    </Layout>
   );
 }

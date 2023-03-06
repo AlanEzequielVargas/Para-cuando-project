@@ -1,18 +1,15 @@
 import React from 'react';
 
 interface ButtonProps {
-  name: string
-  height: string
-  
+  name: string;
+  style: string;
 }
 
-const ButtonSection: React.FC<ButtonProps> = ({name,height}:ButtonProps) => {
-
-  
+const ButtonSection: React.FC<ButtonProps> = ({name,style}:ButtonProps) => {
   return (
-    <button className={`flex items-center justify-center ${height} whitespace-nowrap px-2 py-2 bg-white border sm:px-8 rounded-full text-GRAY  border-GRAY w-full `}>
-    {name}
-  </button>
+      <div className={`${style} flex items-center bg-white text-gray-500 border rounded-full cursor-pointer`}>
+        {name}
+      </div>
    
   );
 };
