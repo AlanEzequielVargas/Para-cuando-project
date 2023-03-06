@@ -56,6 +56,7 @@ module.exports = {
         '373': '373px',
         '378': '378px',
         '640': '640px',
+        '350': '350px',
         '300': '300px'
       },
       gridTemplateRows: {
@@ -63,6 +64,9 @@ module.exports = {
         '8': 'repeat(8, minmax(0, 1fr))',
 
         
+      },
+      spacing: {
+        '150px': '150px',
       }
     },
     plugins: [],
