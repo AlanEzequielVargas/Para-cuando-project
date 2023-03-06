@@ -8,7 +8,7 @@ const SearchNavBar = () => {
   const [showMenu , setShowMenu] = useState(false)
 
   return (
-    <div className="relative">
+    <div className="relative font-roboto">
       <div
         id="white-navbar"
         className="h-24 flex justify-evenly items-center shadow-md max-sm:justify-evenly"
