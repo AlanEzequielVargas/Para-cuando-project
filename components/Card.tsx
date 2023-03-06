@@ -2,13 +2,16 @@ import Image from 'next/image';
 import IconHeart from './svgs/IconHeart';
 import IconPersonMini from './svgs/IconPersonMini';
 
-interface ICard extends React.ComponentPropsWithoutRef<'svg'> {}
+interface ICardProps {
+  cardStyle: string;
+  fill: string;
+}
 
-const Card: React.FC<ICard> = ({ ...iconProps }) => {
+const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
   return (
-<div
+    <div
       id="card"
-      className="font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 max-sm:ml-5 max-md:ml-18 max-lg:ml-16 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10"
+      className={`font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
     >
       <div className="w-full h-2/4 bg-black">
         <Image
@@ -19,7 +22,7 @@ const Card: React.FC<ICard> = ({ ...iconProps }) => {
           height={100}
         />
         <div className="h-2 flex justify-end items-center pr-5">
-          <IconHeart className="absolute cursor-pointer" {...iconProps}/>
+          <IconHeart fill={fill} />
         </div>
       </div>
 
@@ -31,7 +34,9 @@ const Card: React.FC<ICard> = ({ ...iconProps }) => {
         </p>
       </div>
       <div className="pl-5 pr-5 pb-5 space-y-2">
-        <a className="text-blue-600 pb-2 cursor-pointer font-semibold">ladygaga.com</a>
+        <a className="text-blue-600 pb-2 cursor-pointer font-semibold">
+          ladygaga.com
+        </a>
         <div className="flex">
           <IconPersonMini />
           <p>10.000.000 Votes</p>
