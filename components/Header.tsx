@@ -19,7 +19,9 @@ const Header = () => {
         />
         <div className="flex flex-row items-center text-white text-sm">
           <button
+
             className="flex items-center sm:flex"
+
             onClick={() => router.push('/post')}
           >
             <svg
