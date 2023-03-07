@@ -11,8 +11,9 @@ interface ICardProps {
 }
 
 const Card: React.FC<ICardProps> = ({ cardStyle/* , fill */ }: ICardProps) => {
-  const [user, setUser] = useState([]);
-
+  const [user, setUser] = useState({email: "example"});
+  console.log(user);
+  
   const [colorHeart, setColor] = useState(true);
 
   useEffect(() => {
