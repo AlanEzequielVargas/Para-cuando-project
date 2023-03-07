@@ -7,10 +7,10 @@ import { useDispatch } from 'react-redux';
 import { popUpLogin } from '@/slices/popUpLoginSlice';
 interface ICardProps {
   cardStyle: string;
-  /* fill: string; */
+  fill: string;
 }
 
-const Card: React.FC<ICardProps> = ({ cardStyle/* , fill */ }: ICardProps) => {
+const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
   const [user, setUser] = useState({email: "example"});
   console.log(user);
   
