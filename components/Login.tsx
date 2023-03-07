@@ -13,6 +13,7 @@ const Login = () => {
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     if (data.email === 'jamir@example.com' && data.password === '12345') {
       localStorage.setItem("User", JSON.stringify({email: data.email, password: data.password}));
+      router.push('/')
       return Swal.fire({
         icon: 'success',
         title: 'Success',
@@ -26,7 +27,7 @@ const Login = () => {
       html: '<p>Email o password incorrecto.</p>',
     });
   };
-
+  
   return (
     <>
 
