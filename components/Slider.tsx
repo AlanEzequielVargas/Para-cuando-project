@@ -46,23 +46,29 @@ const Slider = () => {
             onSlideChange={() => console.log('slide change')}
             style={{ position: 'unset' }}
           >
-            <div id='arrow' className='cursor-pointer absolute lg:-left-20 top-60 z-30 transform -scale-x-100 max-lg:hidden'>
-              <PrevButton/>
+            <div
+              id="arrow"
+              className="cursor-pointer absolute lg:-left-20 top-60 z-30 transform -scale-x-100 max-lg:hidden"
+            >
+              <PrevButton />
             </div>
             <SwiperSlide>
-              <Card fill="#D9D9D9"/>
+              <Card cardStyle='max-sm:ml-5 max-md:ml-18 max-lg:ml-16' fill="#D9D9D9"/>
             </SwiperSlide>
             <SwiperSlide>
-              <Card fill="#D9D9D9"/>
+              <Card cardStyle='max-sm:ml-5 max-md:ml-18 max-lg:ml-16' fill="#D9D9D9"/>
             </SwiperSlide>
             <SwiperSlide>
-              <Card fill="#D9D9D9"/>
+              <Card cardStyle='max-sm:ml-5 max-md:ml-18 max-lg:ml-16' fill="#D9D9D9"/>
             </SwiperSlide>
             <SwiperSlide>
-              <Card fill="#D9D9D9"/>
+              <Card cardStyle='max-sm:ml-5 max-md:ml-18 max-lg:ml-16' fill="#D9D9D9"/>
             </SwiperSlide>
-            <div id='arrow' className='cursor-pointer absolute lg:-right-20 top-60 z-30 max-lg:hidden'>
-              <NextButton/>
+            <div
+              id="arrow"
+              className="cursor-pointer absolute lg:-right-20 top-60 z-30 max-lg:hidden"
+            >
+              <NextButton />
             </div>
           </Swiper>
         </div>
