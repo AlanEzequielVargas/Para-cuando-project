@@ -12,6 +12,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     if (data.email === 'jamir@example.com' && data.password === '12345') {
+      localStorage.setItem("User", JSON.stringify({email: data.email, password: data.password}));
       return Swal.fire({
         icon: 'success',
         title: 'Success',
