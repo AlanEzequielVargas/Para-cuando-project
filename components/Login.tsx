@@ -2,6 +2,8 @@ import LogoClose from './svgs/IconClose';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
+import EyeSlash from './atoms/EyeSlash';
+import { useState } from 'react';
 interface IFormInput {
   email: String;
   password: String;
@@ -27,13 +29,14 @@ const Login = () => {
       html: '<p>Email o password incorrecto.</p>',
     });
   };
-  
+
+  const [show, setShow] = useState(false);
+
   return (
     <>
 
-      <div className="max-sm:w-350 max-sm:m-auto w-378 h-529 border bg-black/80 text-white rounded-2xl p-8 grid auto-rows-auto gap-y-2 shadow-2xl z-10 relative lg:w-557 lg:h-560 lg:pl-16 lg:pr-16">
+      <div className="max-sm:w-350 max-sm:m-auto w-378 h-529 border bg-black/80 text-white rounded-2xl p-8 grid auto-rows-auto gap-y-2 shadow-2xl z-10 relative lg:w-557 lg:h-560 lg:pl-16 lg:pr-16 font-roboto">
         <div className="h-10 w-10 absolute right-3 top-3" onClick={() => router.push('/')}>
-
           <LogoClose />
         </div>
 
@@ -56,9 +59,12 @@ const Login = () => {
               <input
                 {...register('password')}
                 className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-GRAY"
-                type="password"
+                type={show ? 'text' : 'password'}
                 placeholder="***********"
               />
+              <div onClick={() => setShow(!show)}>
+              <EyeSlash styles="absolute right-12 bottom-[220px] sm:bottom-[200px] lg:bottom-[215px] lg:right-20 cursor-pointer" show={show} />
+            </div>
               <p className="text-center">
                 ¿Olvidaste tu contraseña?{' '}
                 <a className="text-YELLOW underline" href="#">

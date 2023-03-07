@@ -201,7 +201,7 @@ const SignIn = () => {
               id="contraseña"
             />
             <div onClick={() => setShow(!show)}>
-              <EyeSlash styles="absolute right-12 bottom-[160px] lg:bottom-[170px] cursor-pointer" />
+              <EyeSlash styles="absolute right-12 bottom-[160px] lg:bottom-[169px] cursor-pointer" show={show} />
             </div>
 
             {errors.contraseña && (
