@@ -29,11 +29,10 @@ const Login = () => {
 
   return (
     <>
-      <div className="w-378 h-529 border bg-zinc-800/90 text-white rounded-2xl p-8 grid auto-rows-auto gap-y-2 shadow-2xl z-10 relative lg:w-557 lg:h-560 lg:pl-16 lg:pr-16">
-        <div
-          className="h-10 w-h-10 absolute right-5 top-5"
-          onClick={() => router.push('/')}
-        >
+
+      <div className="max-sm:w-350 max-sm:m-auto w-378 h-529 border bg-black/80 text-white rounded-2xl p-8 grid auto-rows-auto gap-y-2 shadow-2xl z-10 relative lg:w-557 lg:h-560 lg:pl-16 lg:pr-16">
+        <div className="h-10 w-10 absolute right-3 top-3" onClick={() => router.push('/')}>
+
           <LogoClose />
         </div>
 
@@ -48,33 +47,33 @@ const Login = () => {
               <legend>Email</legend>
               <input
                 {...register('email')}
-                className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 p-4 placeholder:text-white"
+                className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 p-4 placeholder:text-GRAY"
                 type="text"
                 placeholder="john.doe@gmail.com"
               />
               <legend>Contraseña</legend>
               <input
                 {...register('password')}
-                className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-white"
+                className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-GRAY"
                 type="password"
                 placeholder="***********"
               />
               <p className="text-center">
                 ¿Olvidaste tu contraseña?{' '}
-                <a className="text-yellow-300 underline" href="#">
+                <a className="text-YELLOW underline" href="#">
                   Recupérala Aquí
                 </a>
               </p>
             </div>
             <div className="flex flex-col w-full m-auto">
-              <button className="bg-yellow-300 text-BLACKLIGHT font-bold rounded-md h-10">
+              <button className="bg-YELLOW text-BLACKLIGHT font-bold rounded-md h-10">
                 <input
                   type="submit"
                   value="Iniciar sesión"
                   className="cursor-pointer"
                 />
               </button>
-              <a className="text-yellow-300 underline m-auto" href="#">
+              <a className="text-YELLOW underline m-auto" href="#" onClick={() => router.push('/signup')}>
                 O crear una cuenta
               </a>
             </div>

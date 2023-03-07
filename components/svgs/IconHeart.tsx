@@ -36,19 +36,23 @@ export default IconHeart;
 /* import React, { useContext } from 'react';
 import { ColorHeartContext } from '../../components/Card';
 
-interface IIconHeart extends React.ComponentPropsWithoutRef<'svg'> {}
+interface IIconHeart {
+  fill: string
+}
+
 
 const IconHeart: React.FC<IIconHeart> = ({ ...svgProps }) => {
   const colorHeartChange = useContext(ColorHeartContext);
+
 
   return (
     <svg
       width="49"
       height="49"
       viewBox="0 0 49 49"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...svgProps}
+      fill={fill}
+      className='cursor-pointer absolute'
     >
       <circle
         cx="24.5"

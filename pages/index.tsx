@@ -9,7 +9,9 @@ import Slider from '../components/Slider';
 import type { RootState } from '../store/store';
 
 const Home = () => {
+
   const showLogin = useSelector((state: RootState) => state.popUpLogin.value);
+
 
   return (
     <>

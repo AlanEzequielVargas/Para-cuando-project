@@ -10,6 +10,7 @@ interface ICardProps {
   fill: string;
 }
 
+
 const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
   const [user, setUser] = useState({email: "example"});
   console.log(user);
@@ -26,6 +27,7 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
   //redux configuracion
   const dispatch = useDispatch();
 
+
   return (
     <div
       id="card"
@@ -39,6 +41,7 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
           width={100}
           height={100}
         />
+
         <div
           className="h-2 flex justify-end items-center pr-5"
           onClick={() => {
@@ -51,6 +54,7 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
           }}
         >
           <IconHeart fill={colorHeart ? '#D9D9D9' : '#FF64BC'} />
+
         </div>
       </div>
 
