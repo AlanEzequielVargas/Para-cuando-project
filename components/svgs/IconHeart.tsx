@@ -11,7 +11,7 @@ const IconHeart: React.FC<IIconHeart> = ({fill}:IIconHeart) => {
       viewBox="0 0 49 49"
       xmlns="http://www.w3.org/2000/svg"
       fill={fill}
-      className='cursor-pointer absolute'
+      className='cursor-pointer'
     >
       <circle
         cx="24.5"

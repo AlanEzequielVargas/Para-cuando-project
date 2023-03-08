@@ -13,7 +13,7 @@ const Login = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    if (data.email === 'jamir@example.com' && data.password === '12345') {
+    if (data.email === 'john@gmail.com' && data.password === '12345') {
       localStorage.setItem("User", JSON.stringify({email: data.email, password: data.password}));
       router.push('/')
       return Swal.fire({
@@ -31,6 +31,11 @@ const Login = () => {
   };
 
   const [show, setShow] = useState(false);
+
+  Swal.fire({
+    title: "test this app with:",
+    text: "john@gmail.com 12345",
+  });
 
   return (
     <>

@@ -2,9 +2,9 @@ import Image from 'next/image';
 import IconHeart from './svgs/IconHeart';
 import IconPersonMini from './svgs/IconPersonMini';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { popUpLogin } from '@/slices/popUpLoginSlice';
+
 interface ICardProps {
   cardStyle: string;
   fill: string;
@@ -22,16 +22,22 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
     setUser(userParseado);
   }, []);
 
-  const router = useRouter();
 
   //redux configuracion
   const dispatch = useDispatch();
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
 
   return (
     <div
       id="card"
-      className={`font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
+      className={`relative font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
     >
       <div className="w-full h-2/4 bg-black">
         <Image
@@ -43,17 +49,18 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill }: ICardProps) => {
         />
 
         <div
-          className="h-2 flex justify-end items-center pr-5"
+          className="h-0 flex justify-end items-center pr-5 z-30 absolute right-0 top-[215px]"
           onClick={() => {
             if (user.email) {
               setColor(!colorHeart);
             } else {
+              scrollToTop();
               dispatch(popUpLogin());
-              router.push('/');
+              
             }
           }}
         >
-          <IconHeart fill={colorHeart ? '#D9D9D9' : '#FF64BC'} />
+          <IconHeart fill={colorHeart ? fill : '#FF64BC'} />
 
         </div>
       </div>
