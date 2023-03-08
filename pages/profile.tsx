@@ -11,7 +11,7 @@ export default function profile() {
 
   return (
     <Layout noFooter>
-      <div className="bg-BLUE w-full h-129 relative flex justify-center">
+      <div className="bg-BLUE w-full h-129 relative flex justify-center cursor-pointer">
         <ProfilePhoto/>
       </div>
 
