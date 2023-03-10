@@ -4,39 +4,53 @@ import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
 import EyeSlash from './atoms/EyeSlash';
 import { useState } from 'react';
+import { login } from '@/lib/services/auth.services';
+import Cookies from 'js-cookie';
+
 interface IFormInput {
   email: String;
-  password: String;
+  contraseña: String;
 }
 
 const Login = () => {
+
   const router = useRouter();
-  const { register, handleSubmit } = useForm<IFormInput>();
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+    watch,
+  } = useForm<IFormInput>({ mode: 'onChange' });
+
+
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    if (data.email === 'john@gmail.com' && data.password === '12345') {
-      localStorage.setItem("User", JSON.stringify({email: data.email, password: data.password}));
-      router.push('/')
-      return Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        html: '<p>Credenciales correctas.</p>',
-        timer: 1500,
-      });
-    }
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      html: '<p>Email o password incorrecto.</p>',
-    });
-  };
+    console.log(isValid)
+    if (isValid) {
+
+      const user = {email: data.email, password: data.contraseña};
+      login(user)
+      .then((res) => {
+        console.log(res); 
+        Cookies.set('token',res.data.token);
+        router.push('/');
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ocurrió un error!',
+          html: '<p>Haz iniciado sesión correctamente.</p>',
+          timer: 1500,
+          toast: true,
+        });
+      })
+  }};
 
   const [show, setShow] = useState(false);
 
-  Swal.fire({
-    title: "test this app with:",
-    text: "john@gmail.com 12345",
-  });
-
+  const email = watch('email');
+  const contraseña = watch('contraseña');
+ 
   return (
     <>
 
@@ -55,17 +69,53 @@ const Login = () => {
             <div className="mb-10">
               <legend>Email</legend>
               <input
-                {...register('email')}
+                {...register('email'/* ,{
+                  required: {
+                    value: true,
+                    message: '* Este campo es obligatorio',
+                  },
+                  minLength: {
+                    value: 13,
+                    message: '* Tu email debe ser mayor a 13 caracteres',
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: '* Tu email debe ser menor a 30 caracteres',
+                  },
+                  pattern: {
+                    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+                    message: '* Procura que tu correo este escrito correctamente',
+                  },
+                } */)}
                 className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 p-4 placeholder:text-GRAY"
-                type="text"
+                type="email"
                 placeholder="john.doe@gmail.com"
+                id="email"
               />
               <legend>Contraseña</legend>
               <input
-                {...register('password')}
+                {...register('contraseña'/* ,{
+                  required: {
+                    value: true,
+                    message: '* Este campo es obligatorio',
+                  },
+                  minLength: {
+                    value: 13,
+                    message: '* Tu email debe ser mayor a 13 caracteres',
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: '* Tu email debe ser menor a 30 caracteres',
+                  },
+                  pattern: {
+                    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+                    message: '* Procura que tu correo este escrito correctamente',
+                  },
+                } */)}
                 className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-GRAY"
                 type={show ? 'text' : 'password'}
                 placeholder="***********"
+                id='contraseña'
               />
               <div onClick={() => setShow(!show)}>
               <EyeSlash styles="absolute right-12 bottom-[220px] sm:bottom-[200px] lg:bottom-[215px] lg:right-20 cursor-pointer" show={show} />

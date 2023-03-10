@@ -3,6 +3,7 @@ import CategoriesBar from '@/components/CategoriesBar';
 import CreateAccount from '@/components/CreateAccount';
 import Hero from '@/components/Hero';
 import Layout from '@/components/Layout';
+import { usePublications } from '@/lib/services/publications.services';
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import Slider from '../components/Slider';
@@ -12,7 +13,10 @@ const Home = () => {
 
   const showLogin = useSelector((state: RootState) => state.popUpLogin.value);
 
+  const {data,error,isLoading} = usePublications();
 
+  console.log(data,error,isLoading);
+  
   return (
     <>
       <Hero />
