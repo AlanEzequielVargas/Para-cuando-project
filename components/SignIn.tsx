@@ -1,3 +1,4 @@
+import { signUp } from '@/lib/services/auth.services';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -13,6 +14,8 @@ const SignIn = () => {
     contraseña: string;
   }
 
+  
+
   const router = useRouter();
   const {
     handleSubmit,
@@ -21,14 +24,16 @@ const SignIn = () => {
     watch,
   } = useForm<FormValues>({ mode: 'onChange' });
 
-  /* const values = {
-    email:'',
-    firstName:'',
-    lastName:'',
-    password:''
-  } */
+  
   const submit: SubmitHandler<FormValues> = (data) => {
+    const user = {
+      first_name: data.nombre,
+      last_name: data.apellido,
+      email: data.email,
+      password: data.contraseña
+    }
     if (isValid) {
+      signUp(user)
       router.push('/login');
       console.log(data);
     }

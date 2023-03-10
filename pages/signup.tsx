@@ -1,4 +1,4 @@
-import SignIn from '@/components/SingIn';
+import SignIn from '@/components/SignIn';
 import LogoParaCuando from '@/components/svgs/LogoParaCuando';
 
 export default function signup() {
