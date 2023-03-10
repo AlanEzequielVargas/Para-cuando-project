@@ -21,11 +21,17 @@ export default function profile() {
       </div>
 
       <div className="m-auto grid max-sm:grid-cols-1 sm:grid-cols-2 sm:grid-row-2 lg:grid-cols-3 lg:grid-row-3 lg:w-10/12 md:w-8/12">
-        <Card cardStyle='m-auto' fill="#FF64BC"/>
-        <Card cardStyle='m-auto' fill="#FF64BC"/>
-        <Card cardStyle='m-auto' fill="#FF64BC"/>
-        <Card cardStyle='m-auto' fill="#FF64BC"/>
-        <Card cardStyle='m-auto' fill="#FF64BC"/>
+        
+        <Card
+                    cardStyle="max-sm:ml-5 max-md:ml-18 max-lg:ml-16"
+                    fill="#FF64BC"
+                    image=''
+                    title=''
+                    description=''
+                    votes={0}
+                    onClick={() => ''}
+                  />
+        
       </div>
       
       <div className="h-40 w-full flex items-center justify-center lg:hidden">
