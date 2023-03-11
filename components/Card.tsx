@@ -1,32 +1,31 @@
 import Image from 'next/image';
 import IconHeart from './svgs/IconHeart';
 import IconPersonMini from './svgs/IconPersonMini';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { popUpLogin } from '@/slices/popUpLoginSlice';
+import Cookie from 'js-cookie';
+import { voteAndDeleteVote } from '@/lib/services/publications.services';
 
 
 interface ICardProps {
+  id: string;
   cardStyle: string;
   fill: string;
   image: string;
   title: string;
   description: string;
   votes: number;
-  onClick: Function;
+  redirect: Function;
 }
 
 
-const Card: React.FC<ICardProps> = ({ cardStyle, fill ,image,title,description,votes,onClick}: ICardProps) => {
-  const [user, setUser] = useState({email: "example"});
-  
+
+const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,description,votes,redirect}: ICardProps) => {
+
+  const [votesCount,setVotesCount] = useState(votes);
   
   const [colorHeart, setColor] = useState(true);
-
-  useEffect(() => {
-    const userParseado = JSON.parse(localStorage.getItem('User') || '[]');
-    setUser(userParseado);
-  }, []);
 
 
   //redux configuracion
@@ -45,7 +44,7 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill ,image,title,description,v
     <div
       id="card"
       className={`relative font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
-      onClick={() => onClick()}
+      onClick={() => redirect()}
     >
       <div className="w-full h-2/4 bg-black">
         <Image
@@ -58,9 +57,12 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill ,image,title,description,v
 
         <div
           className="h-0 flex justify-end items-center pr-5 z-30 absolute right-0 top-[215px]"
-          onClick={() => {
-            if (user.email) {
+          onClick={(e) => {
+            if (Cookie.get('token')) {
               setColor(!colorHeart);
+              voteAndDeleteVote(id)
+              .then((res) => setVotesCount(res.data.votes_count));
+              e.stopPropagation();
             } else {
               scrollToTop();
               dispatch(popUpLogin());
@@ -84,7 +86,7 @@ const Card: React.FC<ICardProps> = ({ cardStyle, fill ,image,title,description,v
         </a>
         <div className="flex">
           <IconPersonMini />
-          <p>{votes}</p>
+          <p>{votesCount} votos</p>
         </div>
       </div>
     </div>

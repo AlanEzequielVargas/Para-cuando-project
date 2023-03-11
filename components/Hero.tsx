@@ -7,7 +7,9 @@ const Hero = () => {
   const router = useRouter();
 
   return (
-    <div className="relative h-[30.5rem] bg-[url('/assets/hero-background.jpg')] bg-cover bg-center">
+    <div
+      className={`relative h-[30.5rem] bg-[url('/assets/hero-background.jpg')] bg-cover bg-center`}
+    >
       <div className="absolute w-full h-full ">
         <div className="flex justify-center items-center flex-col h-full gap-y-5">
           <div className="w-52">

@@ -1,4 +1,4 @@
-import ButtonAction from '@/components/atoms/ButtonAction';
+import ButtonAction from '@/components/atoms/ButtonVote';
 import Layout from '@/components/Layout';
 import ButtonAdd from '@/components/svgs/ButtonAdd';
 import Image from 'next/image';

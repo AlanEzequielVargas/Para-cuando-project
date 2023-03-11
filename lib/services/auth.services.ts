@@ -8,6 +8,11 @@ function signUp(userData: {email: string , password: string}){
   return axios.post('/auth/sign-up', userData)
 }
 
+function getProfile(){
+  return axios.get('/auth/me');
+}
+
+
 export {
-  login,signUp
+  login,signUp,getProfile
 }

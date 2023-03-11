@@ -1,3 +1,4 @@
+import axios from '../helpers/axios.helper';
 import useSWR from 'swr';
 import {fetcher} from '../helpers/fetcher.helper'
 
@@ -8,6 +9,13 @@ function usePublications() {
   };
 }
 
+async function voteAndDeleteVote(id: string){
+  await axios.post(`/publications/${id}/vote`,id);
+  return await axios.get(`/publications/${id}`);
+}
+
+
+
 export {
-  usePublications,
+  usePublications,voteAndDeleteVote
 }

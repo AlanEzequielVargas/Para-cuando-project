@@ -10,13 +10,14 @@ import Slider from '../components/Slider';
 import type { RootState } from '../store/store';
 
 const Home = () => {
-
   const showLogin = useSelector((state: RootState) => state.popUpLogin.value);
 
-  const {data,error,isLoading} = usePublications();
+  const { data, error, isLoading } = usePublications();
 
-  console.log(data,error,isLoading);
-  
+  console.log(data, error, isLoading);
+
+
+
   return (
     <>
       <Hero />
