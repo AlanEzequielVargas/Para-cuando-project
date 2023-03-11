@@ -1,6 +1,7 @@
-import ButtonAction from '@/components/atoms/ButtonVote';
+import ButtonNextSection from '@/components/atoms/ButtonNextSection';
 import Layout from '@/components/Layout';
 import ButtonAdd from '@/components/svgs/ButtonAdd';
+
 import Image from 'next/image';
 import footerImage from '../public/assets/footer-image.jpg';
 
@@ -75,7 +76,7 @@ export default function profileSettings() {
           </div>
         </div>
         <div className="w-52 m-auto">
-          <ButtonAction name="Guardar cambios" />
+          <ButtonNextSection name="Guardar cambios"  />
         </div>
       </div>
       <Image

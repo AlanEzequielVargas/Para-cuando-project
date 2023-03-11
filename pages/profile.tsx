@@ -1,10 +1,8 @@
-import ButtonNextSection from '@/components/atoms/ButtonNext';
+import ButtonNextSection from '@/components/atoms/ButtonNextSection';
 import ButtonSection from '@/components/atoms/ButtonSection';
-import ButtonAction from '@/components/atoms/ButtonVote';
 import ProfilePhoto from '@/components/atoms/ProfilePhoto';
 import Card from '@/components/Card';
 import Layout from '@/components/Layout';
-import ButtonNext from '@/components/svgs/ButtonNext';
 import { getProfile } from '@/lib/services/auth.services';
 import Cookie from 'js-cookie';
 import Image from 'next/image';
@@ -59,7 +57,7 @@ export default function profile() {
       </div>
 
       <div className="h-40 w-full flex items-center justify-center lg:hidden">
-        <ButtonNextSection />
+        <ButtonNextSection name="Siguiente"/>
       </div>
       <div className="h-40 w-full flex items-center justify-center max-lg:hidden">
         1 2 3 Pagination 4 5 6

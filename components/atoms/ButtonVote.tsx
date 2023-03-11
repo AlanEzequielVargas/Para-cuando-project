@@ -5,7 +5,7 @@ interface ButtonProps {
   isVoted : boolean;
 }
 
-const ButtonAction: React.FC<ButtonProps> = ({isVoted}:ButtonProps) => {
+const ButtonVote: React.FC<ButtonProps> = ({isVoted}:ButtonProps) => {
 
   return (
     
@@ -15,4 +15,4 @@ const ButtonAction: React.FC<ButtonProps> = ({isVoted}:ButtonProps) => {
   );
 };
 
-export default ButtonAction;
+export default ButtonVote;
