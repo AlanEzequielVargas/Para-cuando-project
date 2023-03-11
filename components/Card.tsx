@@ -1,39 +1,37 @@
+import { voteAndDeleteVote } from '@/lib/services/publications.services';
 import { toggleShowLogin } from '@/slices/showLoginSlice';
 import { RootState } from '@/store/store';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IconHeart from './svgs/IconHeart';
 import IconPersonMini from './svgs/IconPersonMini';
 
 interface ICardProps {
+  id: string;
   cardStyle: string;
   fill: string;
   image: string;
   title: string;
   description: string;
   votes: number;
-  onClick: Function;
+  redirect: Function;
 }
 
 const Card: React.FC<ICardProps> = ({
+  id,
   cardStyle,
   fill,
   image,
   title,
   description,
   votes,
-  onClick,
+  redirect,
 }: ICardProps) => {
-  const [_user, setUser] = useState({ email: 'example' });
+  const [votesCount, setVotesCount] = useState(votes);
 
   const [colorHeart, setColor] = useState(true);
-
-  useEffect(() => {
-    const userParseado = JSON.parse(localStorage.getItem('User') || '[]');
-    setUser(userParseado);
-  }, []);
 
   //redux configuracion
   const dispatch = useDispatch();
@@ -60,16 +58,19 @@ const Card: React.FC<ICardProps> = ({
             alt="imagen de prueba"
             width={100}
             height={100}
-            onClick={onClick()}
+            onClick={redirect()}
           />
         </Link>
 
         <div
           className="h-0 flex justify-end items-center pr-5 z-30 absolute right-0 top-[215px]"
-          onClick={() => {
+          onClick={(e) => {
             if (isLogged) {
               setColor(!colorHeart);
-              //debería también añadirse 1 voto a la base de datos.
+              voteAndDeleteVote(id).then((res) =>
+                setVotesCount(res.data.votes_count)
+              );
+              e.stopPropagation();
             } else {
               scrollToTop();
               dispatch(toggleShowLogin());
@@ -90,7 +91,7 @@ const Card: React.FC<ICardProps> = ({
         </a>
         <div className="flex">
           <IconPersonMini />
-          <p>{votes}</p>
+          <p>{votesCount} votos</p>
         </div>
       </div>
     </div>
