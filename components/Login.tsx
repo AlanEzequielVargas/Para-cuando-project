@@ -1,11 +1,13 @@
-import LogoClose from './svgs/IconClose';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import Swal from 'sweetalert2';
-import { useRouter } from 'next/router';
-import EyeSlash from './atoms/EyeSlash';
-import { useState } from 'react';
 import { login } from '@/lib/services/auth.services';
+import { popUpLogin } from '@/slices/popUpLoginSlice';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
+import EyeSlash from './atoms/EyeSlash';
+import LogoClose from './svgs/IconClose';
 
 interface IFormInput {
   email: String;
@@ -13,6 +15,7 @@ interface IFormInput {
 }
 
 const Login = () => {
+  const dispatch = useDispatch();
 
   const router = useRouter();
 
@@ -23,39 +26,41 @@ const Login = () => {
     watch,
   } = useForm<IFormInput>({ mode: 'onChange' });
 
-
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(isValid)
+    console.log(isValid);
     if (isValid) {
-
-      const user = {email: data.email, password: data.contraseña};
+      const user = { email: data.email, password: data.contraseña };
       login(user)
-      .then((res) => {
-        console.log(res); 
-        Cookies.set('token',res.data.token);
-        router.push('/');
-      })
-      .catch(() => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Ocurrió un error!',
-          html: '<p>Haz iniciado sesión correctamente.</p>',
-          timer: 1500,
-          toast: true,
+        .then((res) => {
+          console.log(res);
+          Cookies.set('token', res.data.token);
+          dispatch(popUpLogin());
+          router.push('/');
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ocurrió un error!',
+            html: '<p>Haz iniciado sesión correctamente.</p>',
+            timer: 1500,
+            toast: true,
+          });
         });
-      })
-  }};
+    }
+  };
 
   const [show, setShow] = useState(false);
 
   const email = watch('email');
   const contraseña = watch('contraseña');
- 
+
   return (
     <>
-
       <div className="max-sm:w-350 max-sm:m-auto w-378 h-529 border bg-black/80 text-white rounded-2xl p-8 grid auto-rows-auto gap-y-2 shadow-2xl z-10 relative lg:w-557 lg:h-560 lg:pl-16 lg:pr-16 font-roboto">
-        <div className="h-10 w-10 absolute right-3 top-3" onClick={() => router.push('/')}>
+        <div
+          className="h-10 w-10 absolute right-3 top-3"
+          onClick={() => router.push('/')}
+        >
           <LogoClose />
         </div>
 
@@ -69,7 +74,8 @@ const Login = () => {
             <div className="mb-10">
               <legend>Email</legend>
               <input
-                {...register('email'/* ,{
+                {...register(
+                  'email' /* ,{
                   required: {
                     value: true,
                     message: '* Este campo es obligatorio',
@@ -86,7 +92,8 @@ const Login = () => {
                     value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
                     message: '* Procura que tu correo este escrito correctamente',
                   },
-                } */)}
+                } */
+                )}
                 className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 p-4 placeholder:text-GRAY"
                 type="email"
                 placeholder="john.doe@gmail.com"
@@ -94,7 +101,8 @@ const Login = () => {
               />
               <legend>Contraseña</legend>
               <input
-                {...register('contraseña'/* ,{
+                {...register(
+                  'contraseña' /* ,{
                   required: {
                     value: true,
                     message: '* Este campo es obligatorio',
@@ -111,15 +119,19 @@ const Login = () => {
                     value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
                     message: '* Procura que tu correo este escrito correctamente',
                   },
-                } */)}
+                } */
+                )}
                 className="w-full rounded-md bg-zinc-800/40 border-r-2 border h-12 pl-4 placeholder:text-GRAY"
                 type={show ? 'text' : 'password'}
                 placeholder="***********"
-                id='contraseña'
+                id="contraseña"
               />
               <div onClick={() => setShow(!show)}>
-              <EyeSlash styles="absolute right-12 bottom-[220px] sm:bottom-[200px] lg:bottom-[215px] lg:right-20 cursor-pointer" show={show} />
-            </div>
+                <EyeSlash
+                  styles="absolute right-12 bottom-[220px] sm:bottom-[200px] lg:bottom-[215px] lg:right-20 cursor-pointer"
+                  show={show}
+                />
+              </div>
               <p className="text-center">
                 ¿Olvidaste tu contraseña?{' '}
                 <a className="text-YELLOW underline" href="#">
@@ -135,7 +147,11 @@ const Login = () => {
                   className="cursor-pointer"
                 />
               </button>
-              <a className="text-YELLOW underline m-auto" href="#" onClick={() => router.push('/signup')}>
+              <a
+                className="text-YELLOW underline m-auto"
+                href="#"
+                onClick={() => router.push('/signup')}
+              >
                 O crear una cuenta
               </a>
             </div>

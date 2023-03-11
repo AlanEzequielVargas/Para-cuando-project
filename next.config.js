@@ -2,9 +2,9 @@
 const nextConfig = {
   publicRuntimeConfig: {
     BASE_URL:
-    process.env.NODE_ENV === 'development' 
-    ? 'https://paracuando-gen19-team-9.academlo.tech/api/v1'
-    : 'https://paracuando-gen19-team-9.academlo.tech/api/v1'
+      process.env.NODE_ENV === 'development'
+        ? 'https://paracuando-gen19-team-2.academlo.tech/api/v1'
+        : 'https://paracuando-gen19-team-2.academlo.tech/api/v1',
   },
   reactStrictMode: true,
   /* swcMinify: true,
@@ -20,8 +20,4 @@ const nextConfig = {
   }, */
 };
 
-
 module.exports = nextConfig;
-
-
-

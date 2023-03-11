@@ -14,11 +14,11 @@ export const popUpLoginSlice = createSlice({
   initialState,
   reducers: {
     popUpLogin: (state) => {
-      state.value = !false;
+      state.value = true;
     },
     popUpLoginClose: (state) => {
-      state.value = false
-    }
+      state.value = false;
+    },
   },
 });
 
