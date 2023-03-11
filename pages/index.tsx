@@ -16,19 +16,14 @@ const Home = () => {
 
   console.log(data, error, isLoading);
 
-
-  
-  
-  
-
   return (
-    <>
-      <Hero/>
+    <>{!isLoading ? (<><Hero/>
       <Slider />
       <Slider />
       <CategoriesBar />
       <Slider />
-      {showLogin && <CreateAccount />}
+      {showLogin && <CreateAccount />}</>) : (<div className='w-screen h-screen flex justify-center items-center text-4xl'>Cargando...</div>)}
+      
     </>
   );
 };

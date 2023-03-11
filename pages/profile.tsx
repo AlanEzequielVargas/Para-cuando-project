@@ -4,14 +4,21 @@ import ProfilePhoto from '@/components/atoms/ProfilePhoto';
 import Card from '@/components/Card';
 import Layout from '@/components/Layout';
 import { getProfile } from '@/lib/services/auth.services';
+import { usePublications } from '@/lib/services/publications.services';
 import Cookie from 'js-cookie';
 import Image from 'next/image';
 import footerImage from '../public/assets/footer-image.jpg';
 
-export default function profile() {
+export default function Profile() {
+
+  const {data,error,isLoading} = getProfile();
+
   if (Cookie.get('token')) {
-    getProfile().then((res) => console.log(res));
+    console.log(data);
+    
   }
+
+  const {mutate} = usePublications();
   return (
     <Layout noFooter>
       <div className="bg-BLUE w-full h-129 relative flex justify-center cursor-pointer">
@@ -33,26 +40,7 @@ export default function profile() {
           description=""
           votes={0}
           redirect={() => ''}
-        />
-        <Card
-          id={''}
-          cardStyle="m-auto"
-          fill="#FF64BC"
-          image=""
-          title=""
-          description=""
-          votes={0}
-          redirect={() => ''}
-        />
-        <Card
-          id={''}
-          cardStyle="m-auto"
-          fill="#FF64BC"
-          image=""
-          title=""
-          description=""
-          votes={0}
-          redirect={() => ''}
+          mutate={mutate}
         />
       </div>
 
