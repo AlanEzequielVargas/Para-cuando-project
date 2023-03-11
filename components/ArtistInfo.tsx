@@ -1,7 +1,8 @@
-import { voteAndDeleteVote } from '@/lib/services/publications.services';
+import { usePublications, voteAndDeleteVote } from '@/lib/services/publications.services';
 import Cookie from 'js-cookie';
 import Image from 'next/image';
 import { useState } from 'react';
+import { mutate } from 'swr';
 import ButtonAction from './atoms/ButtonVote';
 import IconPersonMini from './svgs/IconPersonMini';
 
@@ -22,8 +23,8 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
   content,
   id,
 }: IArtistInfoProps) => {
-  const [votesCount, setVotesCount] = useState(votes);
   const [isVoted, setIsVoted] = useState(false);
+  const {mutate} = usePublications();
   
 
   return (
@@ -40,15 +41,17 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
           <p className="text-blue-600 pb-2">ladygaga.com</p>
           <div className="flex">
             <IconPersonMini />
-            <p>{votesCount} votos</p>
+            <p>{votes} votos</p>
           </div>
         </div>
         <div
           className="max-md:hidden"
           onClick={(e) => {
             if (Cookie.get('token')) {
-                voteAndDeleteVote(id).then((res) =>
-                setVotesCount(res.data.votes_count)
+                voteAndDeleteVote(id).then(() =>{
+                  mutate()
+                }
+                
               );
               setIsVoted(!isVoted)
               e.stopPropagation();

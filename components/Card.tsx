@@ -17,13 +17,10 @@ interface ICardProps {
   description: string;
   votes: number;
   redirect: Function;
+  mutate: Function;
 }
 
-
-
-const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,description,votes,redirect}: ICardProps) => {
-
-  const [votesCount,setVotesCount] = useState(votes);
+const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,description,votes,redirect,mutate}: ICardProps) => {
   
   const [colorHeart, setColor] = useState(true);
 
@@ -44,7 +41,7 @@ const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,descriptio
     <div
       id="card"
       className={`relative font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
-      onClick={() => redirect()}
+      
     >
       <div className="w-full h-2/4 bg-black">
         <Image
@@ -61,7 +58,7 @@ const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,descriptio
             if (Cookie.get('token')) {
               setColor(!colorHeart);
               voteAndDeleteVote(id)
-              .then((res) => setVotesCount(res.data.votes_count));
+              .then(() => mutate());
               e.stopPropagation();
             } else {
               scrollToTop();
@@ -75,7 +72,7 @@ const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,descriptio
       </div>
 
       <div className="pl-5 pr-5 h-28">
-        <h1 className="font-bold">{title}</h1>
+        <h1 className="font-bold" onClick={() => redirect()}>{title}</h1>
         <p className="h-full w-full overflow-clip">
           {description}
         </p>
@@ -86,7 +83,7 @@ const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,descriptio
         </a>
         <div className="flex">
           <IconPersonMini />
-          <p>{votesCount} votos</p>
+          <p>{votes} votos</p>
         </div>
       </div>
     </div>

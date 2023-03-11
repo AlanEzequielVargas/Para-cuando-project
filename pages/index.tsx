@@ -4,7 +4,7 @@ import CreateAccount from '@/components/CreateAccount';
 import Hero from '@/components/Hero';
 import Layout from '@/components/Layout';
 import { usePublications } from '@/lib/services/publications.services';
-import { ReactElement } from 'react';
+import { ReactElement , useEffect,useState} from 'react';
 import { useSelector } from 'react-redux';
 import Slider from '../components/Slider';
 import type { RootState } from '../store/store';
@@ -17,10 +17,13 @@ const Home = () => {
   console.log(data, error, isLoading);
 
 
+  
+  
+  
 
   return (
     <>
-      <Hero />
+      <Hero/>
       <Slider />
       <Slider />
       <CategoriesBar />
