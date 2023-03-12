@@ -9,13 +9,16 @@ function usePublications() {
   };
 }
 
-async function voteAndDeleteVote(id: string){
-  await axios.post(`/publications/${id}/vote`,id);
-  return await axios.get(`/publications/${id}`);
+function voteAndDeleteVote(id: string){
+  return axios.post(`/publications/${id}/vote`,id);
 }
 
 
+function createPublication(data: object){
+  return axios.post('/publications' , data);
+}
+
 
 export {
-  usePublications,voteAndDeleteVote
+  usePublications,voteAndDeleteVote,createPublication
 }

@@ -5,15 +5,15 @@ import { useRouter } from 'next/router';
 import EyeSlash from './atoms/EyeSlash';
 import { useState } from 'react';
 import { login } from '@/lib/services/auth.services';
-import Cookies from 'js-cookie';
+import Cookie from 'js-cookie';
 
 interface IFormInput {
   email: String;
   contraseña: String;
 }
 
-const Login = () => {
 
+const Login = () => {
   const router = useRouter();
 
   const {
@@ -32,7 +32,7 @@ const Login = () => {
       login(user)
       .then((res) => {
         console.log(res); 
-        Cookies.set('token',res.data.token);
+        Cookie.set('token',res.data.token);
         router.push('/');
       })
       .catch(() => {

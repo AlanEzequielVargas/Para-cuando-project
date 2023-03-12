@@ -17,6 +17,8 @@ const Slider = () => {
   const { data, error, isLoading } = usePublications();
   console.log(data?.rows);
   const router = useRouter();
+  console.log(data)
+  const {mutate} = usePublications();
 
   return (
     <div className="w-full m-auto md:w-10/12 lg:w-[1000px] xl:w-[970px] mt-10 font-roboto">
@@ -96,6 +98,7 @@ const Slider = () => {
                     description={pub.description}
                     votes={pub.votes_count}
                     redirect={() => router.push(`/event/${pub.id}`)}
+                    mutate={mutate}
                   />
                 </SwiperSlide>
               )
