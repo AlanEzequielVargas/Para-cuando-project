@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '@/components/Layout';
 import EventFinderNav from '@/components/EventFinderNav';
 import { usePublications } from '@/lib/services/publications.services';
+import Slider from '@/components/Slider';
 
 
 const Search = () => {
@@ -15,7 +16,7 @@ const Search = () => {
           </div>
           
           <EventFinderNav/>
-          
+          <Slider/>
             
       </div>
 

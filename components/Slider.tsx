@@ -17,13 +17,13 @@ const Slider = () => {
   const { data, error, isLoading } = usePublications();
   console.log(data?.rows);
   const router = useRouter();
-  console.log(data)
+  console.log(data);
   const {mutate} = usePublications();
 
   return (
     <div className="w-full m-auto md:w-10/12 lg:w-[1000px] xl:w-[970px] mt-10 font-roboto">
-      {isLoading ? (<div className='text-4xl w-full h-screen m-auto'>Cargando...</div>) : (<div>
-        
+      {isLoading ? (<div className='text-4xl w-full h-screen m-auto'>Cargando...</div>) : (
+      <div>  
         <div className="relative">
         <div className="w-full max-md:px-12">
           <h1 className="font-bold">Title 1</h1>
