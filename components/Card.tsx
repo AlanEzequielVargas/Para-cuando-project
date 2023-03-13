@@ -58,7 +58,7 @@ const Card: React.FC<ICardProps> = ({
             alt="imagen de prueba"
             width={100}
             height={100}
-            onClick={redirect()}
+            onClick={() => redirect()}
           />
         </Link>
 
