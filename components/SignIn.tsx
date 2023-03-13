@@ -39,11 +39,6 @@ const SignIn = () => {
       signUp(user).then((res) => {
         console.log(res);
         
-        if(data.status === 201){
-          showAlert('Cuenta creada con éxito!','Inicia sesión para ingresar a tu cuenta','success')
-        }else{
-          showAlert('Error al crear cuenta','Intentalo nuevamente','error')
-        }
       })
       router.push('/login');
     }

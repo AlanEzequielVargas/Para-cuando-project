@@ -65,14 +65,4 @@
   -ms-overflow-style: none;
 }
 
-.swal2-popup {
-  background-color: #1f58cb;
-}
-
-/* Cambiar el color del texto de la SweetAlert */
-.swal2-title,
-.swal2-content {
-  color: #fff;
-}
-
 
