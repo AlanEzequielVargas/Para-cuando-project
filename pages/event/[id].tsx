@@ -36,7 +36,7 @@ export default function Event() {
             content={data.content}
           />
           <CategoriesBar />
-          <Slider />
+          <Slider title='Recientes' subtitle='Las personas últimanete están hablando de esto'/>
         </>
       )}
     </Layout>
