@@ -21,7 +21,7 @@ const Search = () => {
           
 
           <div className='mt-20'>
-          {data?.rows.map(
+          {data?.results.results.map(
               (pub: {
                 id: string;
                 description: string;

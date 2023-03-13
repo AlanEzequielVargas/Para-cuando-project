@@ -19,7 +19,7 @@ const Home = () => {
 
   console.log(data, error, isLoading);
 
-  
+
 
   return (
     <>{!isLoading ? (<><Hero/>

@@ -81,7 +81,7 @@ const Slider: React.FC<ISliderProps> = ({title,subtitle}:ISliderProps) => {
             >
               <PrevButton />
             </div>
-            {data?.rows.map(
+            {data.results.results.map(
               (pub: {
                 user: any;
                 id: string;
