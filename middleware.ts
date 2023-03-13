@@ -21,5 +21,5 @@ export async function middleware(request: NextRequest) {
   // }
 }
 export const config = {
-  matcher: ['/profile/:path*', '/post' , '/profile'],
+  matcher: ['/profile/:path*', '/post' , '/profile','/profileSettings'],
 };

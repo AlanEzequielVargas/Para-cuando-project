@@ -15,7 +15,8 @@ const SearchNavBar = () => {
         id="white-navbar"
         className="h-24 flex justify-evenly items-center shadow-md max-sm:justify-evenly"
       >
-        <div className="w-96 flex justify-evenly max-sm:hidden">
+        <div style={{borderColor: '#A7A6A7'}} className="w-96 flex justify-evenly max-sm:hidden 
+text-[#A7A6A7]">
           <div onClick={() => router.push('/brands')}>
             <ButtonSection
               name="Marcas y tiendas"

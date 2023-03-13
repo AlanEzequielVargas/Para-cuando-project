@@ -9,9 +9,12 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import Card from './Card';
 import ButtonNext from './svgs/ButtonNext';
 
+interface ISliderProps{
+  title: string;
+  subtitle: string;
+}
 
-
-const Slider = () => {
+const Slider: React.FC<ISliderProps> = ({title,subtitle}:ISliderProps) => {
   const [hidden, setHidden] = useState('hidden');
   const [hiddenTwo, setHiddenTwo] = useState('');
   const { data, error, isLoading } = usePublications();
@@ -25,9 +28,9 @@ const Slider = () => {
       {isLoading ? (<div className='text-4xl w-full h-screen m-auto'>Cargando...</div>) : (
       <div>  
         <div className="relative">
-        <div className="w-full max-md:px-12">
-          <h1 className="font-bold">Title 1</h1>
-          <h3 className="from-neutral-500">Subtitle 2</h3>
+        <div className="w-full max-md:px-12 py-10">
+          <h1 className="font-bold">{title}</h1>
+          <h3 className="from-neutral-500 text-[#6E6A6C]">{subtitle}</h3>
         </div>
           <Swiper
             className="h-550 mb-12"
@@ -74,12 +77,13 @@ const Slider = () => {
           >
             <div
               id="arrow"
-              className={`cursor-pointer absolute md:-left-14 lg:-left-20 top-72 z-30 transform -scale-x-100 max-md:hidden ${hidden}`}
+              className={`cursor-pointer absolute md:-left-14 lg:-left-20 top-[388px] z-30 transform -scale-x-100 max-md:hidden ${hidden}`}
             >
               <PrevButton />
             </div>
             {data?.rows.map(
               (pub: {
+                user: any;
                 id: string;
                 description: string;
                 title: string;
@@ -93,7 +97,7 @@ const Slider = () => {
                     /* cardStyle="max-sm:ml-5 max-md:ml-18 max-lg:ml-16" */
                     cardStyle="m-auto"
                     fill="#D9D9D9"
-                    image={pub.image}
+                    image={pub.user.image_url}
                     title={pub.title}
                     description={pub.description}
                     votes={pub.votes_count}
@@ -106,7 +110,7 @@ const Slider = () => {
 
             <div
               id="arrow"
-              className={`cursor-pointer absolute md:-right-12 lg:-right-20 top-72 z-30 max-md:hidden ${hiddenTwo}`}
+              className={`cursor-pointer absolute md:-right-12 lg:-right-20 top-[388px] z-30 max-md:hidden ${hiddenTwo}`}
             >
               <NextButton />
             </div>

@@ -1,3 +1,4 @@
+import { showAlert } from '@/lib/services/alerts.services';
 import { signUp } from '@/lib/services/auth.services';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -8,6 +9,8 @@ import LogoClose from './svgs/IconClose';
 
 const SignIn = () => {
   interface FormValues {
+    statusText: string;
+    status: number;
     email: string;
     nombre: string;
     apellido: string;
@@ -33,9 +36,16 @@ const SignIn = () => {
       password: data.contraseña
     }
     if (isValid) {
-      signUp(user)
+      signUp(user).then((res) => {
+        console.log(res);
+        
+        if(data.status === 201){
+          showAlert('Cuenta creada con éxito!','Inicia sesión para ingresar a tu cuenta','success')
+        }else{
+          showAlert('Error al crear cuenta','Intentalo nuevamente','error')
+        }
+      })
       router.push('/login');
-      console.log(data);
     }
   };
 
