@@ -15,6 +15,8 @@ const Slider = () => {
   const { data, error, isLoading } = usePublications();
   console.log(data?.rows);
   const router = useRouter();
+  console.log(data);
+  const { mutate } = usePublications();
 
   return (
     <div className="w-full m-auto md:w-10/12 lg:w-[1000px] xl:w-[970px] mt-10 font-roboto">
@@ -70,12 +72,7 @@ const Slider = () => {
               }}
               style={{ position: 'unset' }}
             >
-              <div
-                id="arrow"
-                className={`cursor-pointer absolute md:-left-14 lg:-left-20 top-72 z-30 transform -scale-x-100 max-md:hidden ${hidden}`}
-              >
-                <PrevButton />
-              </div>
+              <PrevButton />
               {data.rows?.map(
                 (pub: {
                   id: string;
@@ -96,6 +93,7 @@ const Slider = () => {
                       description={pub.description}
                       votes={pub.votes_count}
                       redirect={() => router.push(`/event/${pub.id}`)}
+                      mutate={mutate}
                     />
                   </SwiperSlide>
                 )

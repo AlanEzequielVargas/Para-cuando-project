@@ -4,7 +4,7 @@ import CreateAccount from '@/components/CreateAccount';
 import Hero from '@/components/Hero';
 import Layout from '@/components/Layout';
 import { usePublications } from '@/lib/services/publications.services';
-import { ReactElement } from 'react';
+import { ReactElement , useEffect,useState} from 'react';
 import { useSelector } from 'react-redux';
 import Slider from '../components/Slider';
 import type { RootState } from '../store/store';
@@ -17,13 +17,13 @@ const Home = () => {
   console.log(data, error, isLoading);
 
   return (
-    <>
-      <Hero />
+    <>{!isLoading ? (<><Hero/>
       <Slider />
       <Slider />
       <CategoriesBar />
       <Slider />
-      {showLogin && <CreateAccount />}
+      {showLogin && <CreateAccount />}</>) : (<div className='w-screen h-screen flex justify-center items-center text-4xl'>Cargando...</div>)}
+      
     </>
   );
 };

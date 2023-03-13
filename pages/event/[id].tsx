@@ -5,7 +5,6 @@ import SearchNavBar from '@/components/SearchNavbar';
 import Slider from '@/components/Slider';
 import { usePublicationDetails } from '@/lib/services/details.services';
 import { useRouter } from 'next/router';
-import {useEffect} from 'react'
 
 export default function Event() {
   const router = useRouter();
@@ -13,7 +12,7 @@ export default function Event() {
 
 
   const { data, error, isLoading } = usePublicationDetails(String(id));
-  
+  console.log(data)
 
   return (
     <Layout>
@@ -31,10 +30,10 @@ export default function Event() {
           <ArtistInfo
             id={data.id}
             image={''}
-            title={data?.title}
-            description={data?.description}
-            votes={data?.votes_count}
-            content={data?.content}
+            title={data.title}
+            description={data.description}
+            votes={data.votes_count}
+            content={data.content}
           />
           <CategoriesBar />
           <Slider />

@@ -17,6 +17,7 @@ interface ICardProps {
   description: string;
   votes: number;
   redirect: Function;
+  mutate: Function;
 }
 
 const Card: React.FC<ICardProps> = ({
@@ -28,9 +29,8 @@ const Card: React.FC<ICardProps> = ({
   description,
   votes,
   redirect,
+  mutate,
 }: ICardProps) => {
-  const [votesCount, setVotesCount] = useState(votes);
-
   const [colorHeart, setColor] = useState(true);
 
   //redux configuracion
@@ -67,9 +67,7 @@ const Card: React.FC<ICardProps> = ({
           onClick={(e) => {
             if (isLogged) {
               setColor(!colorHeart);
-              voteAndDeleteVote(id).then((res) =>
-                setVotesCount(res.data.votes_count)
-              );
+              voteAndDeleteVote(id).then(() => mutate());
               e.stopPropagation();
             } else {
               scrollToTop();
@@ -82,7 +80,9 @@ const Card: React.FC<ICardProps> = ({
       </div>
 
       <div className="pl-5 pr-5 h-28">
-        <h1 className="font-bold">{title}</h1>
+        <h1 className="font-bold" onClick={() => redirect()}>
+          {title}
+        </h1>
         <p className="h-full w-full overflow-clip">{description}</p>
       </div>
       <div className="pl-5 pr-5 pb-5 space-y-2">
@@ -91,7 +91,7 @@ const Card: React.FC<ICardProps> = ({
         </a>
         <div className="flex">
           <IconPersonMini />
-          <p>{votesCount} votos</p>
+          <p>{votes} votos</p>
         </div>
       </div>
     </div>

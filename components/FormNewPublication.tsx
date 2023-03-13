@@ -1,3 +1,4 @@
+import { createPublication } from '@/lib/services/publications.services';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChangeEvent, useRef, useState } from 'react';
@@ -22,6 +23,9 @@ const FormNewPublication = () => {
     whyRecommend: string;
     referenceLink: string;
     images: File[];
+    cities_id: number;
+    publications_types_id: number;
+    tags: Array<any>;
   };
 
   const types: Array<string> = [
@@ -58,6 +62,19 @@ const FormNewPublication = () => {
   const { register, handleSubmit, reset, watch } = useForm<FormValues>();
   const onSubmit = (data: FormValues) => {
     console.log(data);
+    const publication = {
+      title: data.title,
+      description: data.whyRecommend,
+      content: data.type,
+      reference_link: data.referenceLink,
+      cities_id: 1,
+      publications_types_id: 1,
+      tags: [
+        1
+      ]
+    }
+    console.log(publication);
+    createPublication(publication)
     showAlert();
     setStep(1);
     data.images = imageFiles;

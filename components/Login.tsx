@@ -15,9 +15,8 @@ interface IFormInput {
 }
 
 const Login = () => {
-  const dispatch = useDispatch();
-
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const {
     handleSubmit,
