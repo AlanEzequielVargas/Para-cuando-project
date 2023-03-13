@@ -1,5 +1,7 @@
 import Footer from '@/components/Footer';
 import { ReactNode } from 'react';
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 import Header from './Header';
 
 interface LayoutProps {
@@ -11,9 +13,11 @@ interface LayoutProps {
 export default function Layout({ children, noHeader, noFooter }: LayoutProps) {
   return (
     <>
-      {!noHeader && <Header />}
-      <main>{children}</main>
-      {!noFooter && <Footer />}
+      <Provider store={store}>
+        {!noHeader && <Header />}
+        <main>{children}</main>
+        {!noFooter && <Footer />}
+      </Provider>
     </>
   );
 }
