@@ -1,5 +1,7 @@
+import { getProfile } from '@/lib/services/auth.services';
 import { popUpLoginClose } from '@/slices/popUpLoginSlice';
 import { RootState } from '@/store/store';
+import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -8,8 +10,8 @@ import arrowBack from '../public/arrow-back.svg';
 import iconHeart from '../public/assets/icon-heart-pink.svg';
 import iconLogout from '../public/assets/icon-logout.svg';
 import iconSetting from '../public/assets/icon-setting.svg';
-import imagePc from '../public/assets/pc.png';
 import iconUser from '../public/icon-user.svg';
+import LogoPC from './svgs/LogoPC';
 
 const Header = () => {
   const router = useRouter();
@@ -24,17 +26,15 @@ const Header = () => {
     setShowMenu(!showMenu);
   };
 
+  const {data} = getProfile();
+
+  console.log(data);
+  
+
   return (
-    <div className="bg-black h-16 m-auto">
+    <div className={`${isLogged ? 'bg-[#1A1E2E]' : 'bg-black'} h-16 m-auto`}>
       <div className="flex flex-row justify-between items-center px-5 py-4">
-        <Image
-          src={imagePc}
-          alt={'image-pc?'}
-          width={50}
-          height={50}
-          className="cursor-pointer w-auto h-auto"
-          onClick={() => router.push('/')}
-        />
+        <LogoPC/>
         {isLogged ? (
           <div className="flex flex-row gap-9">
             <div className="hidden sm:flex flex-row items-center text-white text-sm gap-9">
@@ -66,7 +66,8 @@ const Header = () => {
                   height={20}
                   className="w-auto h-auto"
                 />
-                <p className="ml-2">Mis votos</p>
+                <p className="ml-2" onClick={() => {console.log('hola');
+                     router.push('/profile')}}>Mis votos</p>
               </button>
             </div>
 
@@ -82,7 +83,7 @@ const Header = () => {
                   alt="icon-user"
                   className="w-auto h-auto"
                 />
-                <h3 className="ml-2 mr-5">mail@correo.com</h3>
+                <h3 className="ml-2 mr-5">{data?.results.username}</h3>
                 <Image
                   src={arrowBack}
                   width={10}
@@ -119,17 +120,18 @@ const Header = () => {
                       </svg>
                       Crear publicación
                     </li>
-                    <li className="sm:hidden flex flex-row justify-center items-center cursor-pointer hover:text-blue-500">
+                    <li className="sm:hidden flex flex-row justify-center items-center cursor-pointer hover:text-blue-500" >
                       <Image
                         src={iconHeart}
                         alt="icon-heart"
                         width={15}
                         height={15}
                         className="mx-1 w-auto h-auto"
+                        
                       />
                       Mis votos
                     </li>
-                    <li className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500">
+                    <li className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500" onClick={() => router.push('/profileSettings')}>
                       <Image
                         src={iconSetting}
                         alt="icon-setting"
@@ -142,6 +144,7 @@ const Header = () => {
                     <li
                       className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500"
                       onClick={async () => {
+                        Cookies.remove('token')
                         toggleMenu(); // cierra el menú
                         await new Promise(() => {
                           dispatch(popUpLoginClose()); // cierra la sesión

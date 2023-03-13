@@ -39,10 +39,10 @@ const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,descriptio
   return (
     <div
       id="card"
-      className={`relative font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
+      className={`relative font-roboto cursor-pointer border flex justify-between xs:w-[365px] sm:w-[394px] h-[197px] lg:w-[934px] lg:h-[239px] mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle} bg-white`}
       
     >
-      <div className="w-full h-2/4 bg-black">
+      <div className="w-[121px] lg:w-[239px] h-full bg-black rounded-3xl">
         <Image
           className="w-full h-full"
           src={image}
@@ -52,7 +52,7 @@ const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,descriptio
         />
 
         <div
-          className="h-0 flex justify-end items-center pr-5 z-30 absolute right-0 top-[215px]"
+          className="h-0 flex justify-end items-center pr-5 z-30 absolute -right-2 top-6"
           onClick={(e) => {
             if (Cookies.get('token')) {
               setColor(!colorHeart);
@@ -69,22 +69,24 @@ const Card: React.FC<ICardProps> = ({ id,cardStyle, fill ,image,title,descriptio
 
         </div>
       </div>
-
-      <div className="pl-5 pr-5 h-28">
-        <h1 className="font-bold" onClick={() => redirect()}>{title}</h1>
-        <p className="h-full w-full overflow-clip">
+          <div className='font-roboto py-2 sm:py-5 w-6/12 m-auto lg:w-7/12 sm:space-y-2 mt-5'>
+            <div className="">
+        <h1 className="font-bold text-[20px] lg:text-[30px] text-[#1A1E2E]" onClick={() => redirect()}>{title}</h1>
+        <p className="h-full w-full overflow-clip lg:text-[20px] text-[#6E6A6C]">
           {description}
         </p>
       </div>
-      <div className="pl-5 pr-5 pb-5 space-y-2">
-        <a className="text-blue-600 pb-2 cursor-pointer font-semibold">
+      <div className="pt-5 lg:pt-10">
+        <a className="text-blue-600 cursor-pointer font-semibold lg:text-[18px] ">
           ladygaga.com
         </a>
-        <div className="flex">
+        <div className="flex text-[#1A1E2E] font-bold lg:text-[18px]">
           <IconPersonMini />
           <p>{votes} votos</p>
         </div>
       </div>
+          </div>
+      
     </div>
   );
 };

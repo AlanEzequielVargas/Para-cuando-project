@@ -9,10 +9,10 @@ export default function artists() {
     <Layout>
       <MiniHero background="bg-[url('/assets/artists-background.jpg')] md:bg-[center_bottom_25rem]" title='Artistas y Conciertos' description='Descubre los artistas y conciertos que la gente quiere cerca'/>
       <SearchNavBar />
-      <Slider />
-      <Slider />
+      <Slider title='Populares en Querétaro' subtitle='Lo que las personas piden más'/>
+      <Slider title='Sugerencias para ti' subtitle='Publicaciones que podrías colaborar'/>
       <CategoriesBar />
-      <Slider />
+      <Slider title='Recientes' subtitle='Las personas últimanete están hablando de esto'/>
     </Layout>
   );
 }

@@ -7,7 +7,7 @@ interface ButtonProps {
 
 const ButtonSection: React.FC<ButtonProps> = ({name,style}:ButtonProps) => {
   return (
-      <div className={`${style} flex items-center bg-white text-gray-500 border rounded-full cursor-pointer`}>
+      <div style={{borderColor: '#A7A6A7'}} className={`${style} flex items-center bg-white text-[#A7A6A7] border rounded-full cursor-pointer`}>
         {name}
       </div>
    

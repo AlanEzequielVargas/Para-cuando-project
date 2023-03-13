@@ -1,7 +1,7 @@
 import { usePublications, voteAndDeleteVote } from '@/lib/services/publications.services';
 import Cookie from 'js-cookie';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { mutate } from 'swr';
 import ButtonAction from './atoms/ButtonVote';
 import IconPersonMini from './svgs/IconPersonMini';
@@ -25,6 +25,20 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
 }: IArtistInfoProps) => {
   const [isVoted, setIsVoted] = useState(false);
   const {mutate} = usePublications();
+  const [imageSrc, setImageSrc] = useState('');
+
+  // Parseamos la URL
+  try {
+    const url = new URL(`https://paracuando.s3.sa-east-1.amazonaws.com/${image}`);
+    const imagePath = url.pathname;
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      setImageSrc(imagePath);
+    }, []);
+  } catch (error) {
+    console.error(error);
+  }
   
 
   return (
@@ -32,7 +46,7 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
       <div className="h-full flex flex-col justify-between pr-10 max-md:justify-between max-md:gap-y-5">
         <h2 className="font-bold">{content}</h2>
         <div className=" h-28">
-          <h1 className="font-bold text-5xl max-md:text-4xl">{title}</h1>
+          <h1 className="font-bold text-5xl max-lg:text-4xl">{title}</h1>
           <p className="h-full w-full overflow-clip text-GRAY DARK py-3">
             {description}
           </p>
@@ -61,13 +75,16 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
           <ButtonAction isVoted={isVoted} />
         </div>
       </div>
-      <Image
-        className="h-381 w-539 max-md:w-full"
-        src={image}
+      <div className='bg-black max-sm:w-full md:w-[539px] '>
+        <Image
+        className="h-[381px] w-[539px] max-sm:w-full md:w-8/12 lg:w-full"
+        src={imageSrc}
         alt="event image"
-        width={100}
-        height={100}
+        width={951}
+        height={713}
       />
+      </div>
+      
       <div className="md:hidden">
         <ButtonAction isVoted={isVoted} />
       </div>
