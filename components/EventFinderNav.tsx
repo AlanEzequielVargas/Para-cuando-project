@@ -11,29 +11,23 @@ const EventFinderNav = () => {
       id="white-navbar"
       className="h-[140px] shadow-md flex flex-col justify-around items-center text-[#6E6A6C] font-roboto"
     >
-      <div className="w-11/12 lg:w-10/12 mt-6 flex justify-center lg:justify-start lg:gap-x-5 items-center">
-        <div className='w-full md:w-11/12 lg:w-6/12 '>
-          <Input />
-        </div>
-        <div className='max-lg:hidden'>
-          <ButtonNextSection name='Buscar'/>
-        </div>
-        
-        
+      <div className="w-11/12 lg:w-8/12 mt-6 flex justify-between">
+        <Input />
+        <ButtonNextSection name='Buscar'/>
       </div>
 
-      <nav className="w-full lg:w-10/12">
-        <ul className="flex justify-around mt-4 lg:w-7/12 lg:justify-between">
-          <li className="cursor-pointer pb-2 mt-2 border-b-4 border-white border-solid active:focus:border-b-4 active:border-[#1B4DB1] ">
+      <nav className="w-full">
+        <ul className="flex justify-around mt-4 lg:w-9/12 m-auto">
+          <li className="pb-2 mt-2 border-b-4 border-white border-solid hover:border-b-4 hover:border-[#1B4DB1]">
             Todos los resultados
           </li>
-          <li className="cursor-pointer pb-2 mt-2 border-b-4 border-white border-solid active:border-b-4 active:border-[#1B4DB1]">
+          <li className="pb-2 mt-2 border-b-4 border-white border-solid hover:border-b-4 hover:border-[#1B4DB1]">
             Marcas y tiendas
           </li>
-          <li className="cursor-pointer pb-2 mt-2 border-b-4 border-white border-solid active:border-b-4 active:border-[#1B4DB1] max-lg:hidden">
+          <li className="pb-2 mt-2 border-b-4 border-white border-solid hover:border-b-4 hover:border-[#1B4DB1] max-lg:hidden">
             Artistas y conciertos
           </li>
-          <li className="cursor-pointer pb-2 mt-2 border-b-4 border-white border-solid active:border-b-4 active:border-[#1B4DB1] max-lg:hidden">
+          <li className="pb-2 mt-2 border-b-4 border-white border-solid hover:border-b-4 hover:border-[#1B4DB1] max-lg:hidden">
             Torneos
           </li>
           <div className="relative lg:hidden">
