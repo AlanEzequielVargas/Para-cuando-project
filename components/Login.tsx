@@ -1,6 +1,7 @@
 import { login } from '@/lib/services/auth.services';
 import { popUpLogin } from '@/slices/popUpLoginSlice';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -40,7 +41,7 @@ const Login = () => {
           Swal.fire({
             icon: 'error',
             title: 'Ocurrió un error!',
-            html: '<p>Haz iniciado sesión correctamente.</p>',
+            html: '<p>Algo salío mal.</p>',
             timer: 1500,
             toast: true,
           });
@@ -146,13 +147,14 @@ const Login = () => {
                   className="cursor-pointer"
                 />
               </button>
-              <a
-                className="text-YELLOW underline m-auto"
-                href="#"
-                onClick={() => router.push('/signup')}
-              >
-                O crear una cuenta
-              </a>
+              <Link href="#" passHref legacyBehavior>
+                <a
+                  className="text-YELLOW underline mt-4 m-auto"
+                  onClick={() => router.push('/signup')}
+                >
+                  O crear una cuenta
+                </a>
+              </Link>
             </div>
           </form>
         </div>
