@@ -1,12 +1,16 @@
+import { showAlert } from '@/lib/services/alerts.services';
 import { createPublication } from '@/lib/services/publications.services';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ChangeEvent, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import deleteImage from '../public/assets/delete.png';
 
 const FormNewPublication = () => {
+  const router = useRouter();
+
   type FormValues = {
     title: string;
     type: 'Marcas y tiendas' | 'Artistas y conciertos' | 'Torneos';
@@ -50,15 +54,6 @@ const FormNewPublication = () => {
 
   const [imageFiles, setImageFiles] = useState<File[]>([]);
 
-  const showAlert = () => {
-    Swal.fire({
-      icon: 'success',
-      title: '¡Listo!',
-      html: '<p>Tu publicación ha sido cargada exitosamente.</p>',
-      timer: 3000,
-    });
-  };
-
   const { register, handleSubmit, reset, watch } = useForm<FormValues>();
   const onSubmit = (data: FormValues) => {
     console.log(data);
@@ -69,24 +64,26 @@ const FormNewPublication = () => {
       reference_link: data.referenceLink,
       cities_id: 1,
       publications_types_id: 1,
-      tags: [
-        1
-      ]
-    }
+      tags: [1],
+    };
     console.log(publication);
-    createPublication(publication)
-    showAlert();
+    createPublication(publication);
+    showAlert(
+      'Publicado!',
+      false,
+      '',
+      'success',
+      6000,
+      'white',
+      false,
+      'rgb(0 0 0 / 0.0)',
+      '🔥'
+    );
     setStep(1);
     data.images = imageFiles;
     setImageFiles([]);
     reset();
-  };
-
-  const errorAlert = () => {
-    Swal.fire({
-      icon: 'error',
-      html: 'Todos los campos son requeridos para poder continuar.',
-    });
+    router.push('/');
   };
 
   const errorNext = () => {
@@ -268,7 +265,19 @@ const FormNewPublication = () => {
                 type="button"
                 className="px-4 py-2 bg-blue-800 text-white rounded-full hover:bg-blue-500"
                 onClick={() => {
-                  errorNext() ? errorAlert() : setStep(2);
+                  errorNext()
+                    ? showAlert(
+                        'Atento!',
+                        false,
+                        'Todos los campos deben estar completos para publicar',
+                        'info',
+                        5000,
+                        'white',
+                        true,
+                        'rgb(0 0 0 / 0.0)',
+                        '🤔'
+                      )
+                    : setStep(2);
                 }}
               >
                 Siguiente

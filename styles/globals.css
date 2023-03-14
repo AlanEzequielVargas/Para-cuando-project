@@ -65,4 +65,8 @@
   -ms-overflow-style: none;
 }
 
+.app-container {
+  max-width: 1000px;
+  margin: auto;
+}
 

@@ -1,6 +1,7 @@
 import { usePublications, voteAndDeleteVote } from '@/lib/services/publications.services';
 import Cookie from 'js-cookie';
 import Image from 'next/image';
+import {  useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { mutate } from 'swr';
 import ButtonAction from './atoms/ButtonVote';
@@ -27,11 +28,10 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
   const {mutate} = usePublications();
   const [imageSrc, setImageSrc] = useState('');
 
-  // Parseamos la URL
   try {
     const url = new URL(`https://paracuando.s3.sa-east-1.amazonaws.com/${image}`);
     const imagePath = url.pathname;
-
+    
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       setImageSrc(imagePath);
@@ -39,6 +39,8 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
   } catch (error) {
     console.error(error);
   }
+
+  const router = useRouter();
   
 
   return (
@@ -69,6 +71,8 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
               );
               setIsVoted(!isVoted)
               e.stopPropagation();
+            }else{
+              router.push('/login')
             }
           }}
         >

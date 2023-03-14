@@ -5,20 +5,21 @@ import Card from '@/components/Card';
 import Layout from '@/components/Layout';
 import { getProfile } from '@/lib/services/auth.services';
 import { usePublications } from '@/lib/services/publications.services';
+import { getUserVotes } from '@/lib/services/user.services';
 import Cookie from 'js-cookie';
 import Image from 'next/image';
 import footerImage from '../public/assets/footer-image.jpg';
 
 export default function Profile() {
+  const { data } = getProfile();//datos del usuario en el cual esta mi id
+  const { data: votes } = getUserVotes(data?.results.id);// votos del usuario en el que parecen las pubs votadas
+  const {data: publications} = usePublications();//todas las publicaciones
 
-  const {data,error,isLoading} = getProfile();
+  
 
-  if (Cookie.get('token')) {
-    console.log(data);
-    
-  }
+  
 
-  const {mutate} = usePublications();
+  const { mutate } = usePublications();
   return (
     <Layout noFooter>
       <div className="bg-BLUE w-full h-129 relative flex justify-center cursor-pointer">
@@ -31,21 +32,12 @@ export default function Profile() {
       </div>
 
       <div className="m-auto grid max-sm:grid-cols-1 sm:grid-cols-2 sm:grid-row-2 lg:grid-cols-3 lg:grid-row-3 lg:w-10/12 md:w-8/12">
-        <Card
-          id={''}
-          cardStyle="m-auto"
-          fill="#FF64BC"
-          image=""
-          title=""
-          description=""
-          votes={0}
-          redirect={() => ''}
-          mutate={mutate}
-        />
+       
+      
       </div>
 
       <div className="h-40 w-full flex items-center justify-center lg:hidden">
-        <ButtonNextSection name="Siguiente"/>
+        <ButtonNextSection name="Siguiente" />
       </div>
       <div className="h-40 w-full flex items-center justify-center max-lg:hidden">
         1 2 3 Pagination 4 5 6
