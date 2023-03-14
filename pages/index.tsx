@@ -19,12 +19,12 @@ const Home = () => {
 
 
   return (
-    <>{!isLoading ? (<><Hero/>
+    <>{!error ? (<><Hero/>
       <Slider title='Populares en Querétaro' subtitle='Lo que las personas piden más'/>
       <Slider title='Sugerencias para ti' subtitle='Publicaciones que podrías colaborar'/>
       <CategoriesBar />
       <Slider title='Recientes' subtitle='Las personas últimanete están hablando de esto'/>
-      {showLogin && <CreateAccount />}</>) : (<div className='w-screen h-screen flex justify-center items-center text-4xl'>Cargando...</div>)}
+      {showLogin && <CreateAccount />}</>) : (<div className='w-screen h-screen flex justify-center items-center text-4xl'>Ocurrió un error.</div>)}
       
     </>
   );
