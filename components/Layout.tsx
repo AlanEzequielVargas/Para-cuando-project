@@ -15,7 +15,7 @@ export default function Layout({ children, noHeader, noFooter }: LayoutProps) {
     <>
       <Provider store={store}>
         {!noHeader && <Header />}
-        <main>{children}</main>
+        <main className=''>{children}</main>
         {!noFooter && <Footer />}
       </Provider>
     </>

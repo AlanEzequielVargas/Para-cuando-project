@@ -1,3 +1,4 @@
+import { showAlert } from '@/lib/services/alerts.services';
 import { voteAndDeleteVote } from '@/lib/services/publications.services';
 import { toggleShowLogin } from '@/slices/showLoginSlice';
 import { RootState } from '@/store/store';
@@ -69,16 +70,15 @@ const Card: React.FC<ICardProps> = ({
       className={`bg-white relative font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
     >
       <div className="w-full h-2/4 bg-black">
-        <Link href="#" legacyBehavior>
+        
           <Image
             className="w-full h-full"
             src={imageSrc}
             alt="imagen de prueba"
             width={100}
             height={100}
-            onClick={() => redirect()}
           />
-        </Link>
+        
 
         <div
           className="h-0 flex justify-end items-center pr-5 z-30 absolute right-0 top-[215px]"
@@ -87,6 +87,7 @@ const Card: React.FC<ICardProps> = ({
               setColor(!colorHeart);
               voteAndDeleteVote(id).then(() => mutate());
               e.stopPropagation();
+              showAlert('',true,'Tu voto fue enviado con exito!','success',2000,'white',false,'rgb(0 0 0 / 0.0)','❤')
             } else {
               scrollToTop();
               dispatch(toggleShowLogin());

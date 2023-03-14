@@ -28,7 +28,7 @@ const Header = () => {
 
   const {data} = getProfile();
 
-  console.log(data);
+  
   
 
   return (
@@ -66,7 +66,7 @@ const Header = () => {
                   height={20}
                   className="w-auto h-auto"
                 />
-                <p className="ml-2" onClick={() => {console.log('hola');
+                <p className="ml-2" onClick={() => {
                      router.push('/profile')}}>Mis votos</p>
               </button>
             </div>

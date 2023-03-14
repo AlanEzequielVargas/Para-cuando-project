@@ -18,9 +18,9 @@ const Slider: React.FC<ISliderProps> = ({title,subtitle}:ISliderProps) => {
   const [hidden, setHidden] = useState('hidden');
   const [hiddenTwo, setHiddenTwo] = useState('');
   const { data, error, isLoading } = usePublications();
-  console.log(data?.rows);
+  
   const router = useRouter();
-  console.log(data);
+
   const {mutate} = usePublications();
 
   return (
@@ -30,7 +30,7 @@ const Slider: React.FC<ISliderProps> = ({title,subtitle}:ISliderProps) => {
         <div className="relative">
         <div className="w-full max-md:px-12 py-10">
           <h1 className="font-bold">{title}</h1>
-          <h3 className="from-neutral-500 text-[#6E6A6C]">{subtitle}</h3>
+          <h3 className="text-[#6E6A6C] text-[19px]">{subtitle}</h3>
         </div>
           <Swiper
             className="h-550 mb-12"

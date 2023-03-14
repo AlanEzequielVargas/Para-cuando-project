@@ -10,15 +10,12 @@ import { useSelector } from 'react-redux';
 import Slider from '../components/Slider';
 import type { RootState } from '../store/store';
 import 'sweetalert2/dist/sweetalert2.min.css'; // Importar el archivo CSS predeterminado de SweetAlert2
+import { getUserVotes } from '@/lib/services/user.services';
 
 
 const Home = () => {
   const showLogin = useSelector((state: RootState) => state.showLogin.value);
-
-  const { data, error, isLoading } = usePublications();
-
-  console.log(data, error, isLoading);
-
+  const {data,error,isLoading} = usePublications()
 
 
   return (

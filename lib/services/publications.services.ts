@@ -14,6 +14,7 @@ function voteAndDeleteVote(id: string){
 }
 
 
+
 function createPublication(data: object){
   return axios.post('/publications' , data);
 }
