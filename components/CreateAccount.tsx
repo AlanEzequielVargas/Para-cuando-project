@@ -11,7 +11,7 @@ const CreateAccount = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <div className="popup-enter h-483px w-362px border bg-black/80 text-white rounded-2xl p-5 grid grid-rows-3 gap-y-2 shadow-2xl absolute top-20 right-2 sm:right-5 md:right-12 z-10">
+      <div className="popup-enter h-[483px] w-[362px] border bg-black/80 text-white rounded-2xl p-5 grid grid-rows-3 gap-y-2 shadow-2xl absolute top-20 right-2 sm:right-5 md:right-12 z-10">
         <div className="h-5 flex justify-end">
           <div
             className="h-10 w-10 absolute right-3 top-3"
@@ -41,7 +41,7 @@ const CreateAccount = () => {
           </button>
           <Link href="/login" passHref legacyBehavior>
             <a
-              className="text-yellow-300 underline mt-0 text-center"
+              className="text-yellow-300 underline mt-4 text-center"
               onClick={() => {
                 dispatch(toggleShowLogin());
               }}

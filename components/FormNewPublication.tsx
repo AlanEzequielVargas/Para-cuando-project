@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
 import deleteImage from '../public/assets/delete.png';
 
 const FormNewPublication = () => {
@@ -162,7 +161,7 @@ const FormNewPublication = () => {
           </a>
         </Link>
       )}
-      <div className="sm:ml-20 sm:w-4/6 mt-10 sm:max-w-screen-sm">
+      <div className="sm:mx-auto sm:w-4/6 mt-10 sm:max-w-screen-sm">
         <div className="h-2 bg-gray-300 rounded-full overflow-hidden mx-auto text-center flex items-center mt-4">
           {' '}
           <div
@@ -175,7 +174,7 @@ const FormNewPublication = () => {
 
       {step === 1 && (
         <div className="">
-          <div className="sm:ml-20 sm:w-4/6 mt-10 sm:max-w-screen-sm">
+          <div className="sm:mx-auto sm:w-4/6 mt-10 sm:max-w-screen-sm">
             <h1 className="text-2xl font-bold mt-8">Publicación</h1>
             <p className="text-gray-800 mt-2">Información básica</p>
             <div className="mb-4 mt-4 relative">
@@ -288,7 +287,7 @@ const FormNewPublication = () => {
       )}
       {step === 2 && (
         <>
-          <div className="md:ml-20 md:w-4/6 mt-10 md:max-w-screen-sm">
+          <div className="md:mx-auto md:w-4/6 mt-10 md:max-w-screen-sm">
             <h1
               className="pt-10 font-semibold mt-5"
               style={{ color: '#1A1E2E' }}
