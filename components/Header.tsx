@@ -1,3 +1,4 @@
+import { showAlert } from '@/lib/services/alerts.services';
 import { getProfile } from '@/lib/services/auth.services';
 import { popUpLoginClose } from '@/slices/popUpLoginSlice';
 import { RootState } from '@/store/store';
@@ -26,15 +27,12 @@ const Header = () => {
     setShowMenu(!showMenu);
   };
 
-  const {data} = getProfile();
-
-  
-  
+  const { data } = getProfile();
 
   return (
     <div className={`${isLogged ? 'bg-[#1A1E2E]' : 'bg-black'} h-16 m-auto`}>
       <div className="flex flex-row justify-between items-center px-5 py-4">
-        <LogoPC/>
+        <LogoPC />
         {isLogged ? (
           <div className="flex flex-row gap-9">
             <div className="hidden sm:flex flex-row items-center text-white text-sm gap-9">
@@ -67,7 +65,15 @@ const Header = () => {
                   height={20}
                   className="w-auto h-auto"
                 />
-                <p className="ml-2" >Mis votos</p>
+
+                <p
+                  className="ml-2"
+                  onClick={() => {
+                    router.push('/profile');
+                  }}
+                >
+                  Mis votos
+                </p>
               </button>
             </div>
 
@@ -120,19 +126,23 @@ const Header = () => {
                       </svg>
                       Crear publicación
                     </li>
+
                     <li className="sm:hidden flex flex-row justify-center items-center cursor-pointer hover:text-blue-500" onClick={() => {
                      router.push('/profile')}}>
+
                       <Image
                         src={iconHeart}
                         alt="icon-heart"
                         width={15}
                         height={15}
                         className="mx-1 w-auto h-auto"
-                        
                       />
                       Mis votos
                     </li>
-                    <li className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500" onClick={() => router.push('/profileSettings')}>
+                    <li
+                      className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500"
+                      onClick={() => router.push('/profileSettings')}
+                    >
                       <Image
                         src={iconSetting}
                         alt="icon-setting"
@@ -145,7 +155,7 @@ const Header = () => {
                     <li
                       className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500"
                       onClick={async () => {
-                        Cookies.remove('token')
+                        Cookies.remove('token');
                         toggleMenu(); // cierra el menú
                         await new Promise(() => {
                           dispatch(popUpLoginClose()); // cierra la sesión
@@ -172,10 +182,23 @@ const Header = () => {
             </div>
           </div>
         ) : (
+          //si el usuario no está logueado
           <div className="flex flex-row items-center text-white text-sm sm:gap-9 gap-4">
             <button
               className="flex items-center"
-              onClick={() => router.push('/post')}
+              onClick={() =>
+                showAlert(
+                  'Atento!',
+                  false,
+                  'Para poder hacer una nueva publicación debes iniciar sesión.',
+                  'info',
+                  5000,
+                  'white',
+                  true,
+                  'rgb(0 0 0 / 0.0)',
+                  '🤔'
+                )
+              }
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

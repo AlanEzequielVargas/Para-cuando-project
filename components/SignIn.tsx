@@ -1,5 +1,6 @@
 import { showAlert } from '@/lib/services/alerts.services';
 import { signUp } from '@/lib/services/auth.services';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -17,8 +18,6 @@ const SignIn = () => {
     contraseña: string;
   }
 
-  
-
   const router = useRouter();
   const {
     handleSubmit,
@@ -27,20 +26,21 @@ const SignIn = () => {
     watch,
   } = useForm<FormValues>({ mode: 'onChange' });
 
-  
   const submit: SubmitHandler<FormValues> = (data) => {
     const user = {
       first_name: data.nombre,
       last_name: data.apellido,
       email: data.email,
-      password: data.contraseña
-    }
+      password: data.contraseña,
+    };
     if (isValid) {
       signUp(user).then((res) => {
+
         
         if(res.status === 201){
           showAlert('Felicidades!',false,'Ahora puedes iniciar sesión',false,2000,'yellow',false,'rgba(0,0,123,0.4)','✔'
         )
+
           router.push('/login');
         }else{
            showAlert('Upss!',false,'Algo no anda bien, prueba nuevamente','error',8000,'yellow',true,'rgba(0,0,0,0.0)','X')
@@ -216,7 +216,10 @@ const SignIn = () => {
               id="contraseña"
             />
             <div onClick={() => setShow(!show)}>
-              <EyeSlash styles="absolute right-12 bottom-[160px] lg:bottom-[169px] cursor-pointer" show={show} />
+              <EyeSlash
+                styles="absolute right-12 bottom-[160px] lg:bottom-[169px] cursor-pointer"
+                show={show}
+              />
             </div>
 
             {errors.contraseña && (
@@ -239,13 +242,15 @@ const SignIn = () => {
               >
                 Crear cuenta
               </button>
-              <a
-                className="text-YELLOW underline m-auto"
-                href="#"
-                onClick={() => router.push('/login')}
-              >
-                O inicia sesión
-              </a>
+              <Link href="#" passHref legacyBehavior>
+                <a
+                  className="text-YELLOW underline m-auto"
+                  href="#"
+                  onClick={() => router.push('/login')}
+                >
+                  O inicia sesión
+                </a>
+              </Link>
             </div>
           </form>
         </div>

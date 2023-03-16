@@ -2,12 +2,12 @@
 const nextConfig = {
   publicRuntimeConfig: {
     BASE_URL:
-    process.env.NODE_ENV === 'development' 
-    ? 'https://paracuando-gen19-team-9.academlo.tech/api/v1'
-    : 'https://paracuando-gen19-team-9.academlo.tech/api/v1'
+      process.env.NODE_ENV === 'development'
+        ? 'https://paracuando-gen19-team-9.academlo.tech/api/v1'
+        : 'https://paracuando-gen19-team-9.academlo.tech/api/v1',
   },
   reactStrictMode: true,
-  
+
   /* swcMinify: true,
   optimizeFonts: true,
   images: {
@@ -23,6 +23,7 @@ const nextConfig = {
 module.exports = {
   ...nextConfig,
   images: {
+
     remotePatterns: [
       {
         protocol: 'https',
@@ -32,6 +33,7 @@ module.exports = {
     minimumCacheTTL: 1500000,
   }
 };
+
 
 
 
