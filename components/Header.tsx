@@ -58,7 +58,8 @@ const Header = () => {
                 </svg>
                 <p className="text-blue-600">Crear publicación</p>
               </button>
-              <button className="hidden sm:flex flex-row items-center text-white text-sm ">
+              <button className="hidden sm:flex flex-row items-center text-white text-sm " onClick={() => {
+                     router.push('/profile')}}>
                 <Image
                   src={iconHeart}
                   alt="icon-heart"
@@ -66,8 +67,7 @@ const Header = () => {
                   height={20}
                   className="w-auto h-auto"
                 />
-                <p className="ml-2" onClick={() => {
-                     router.push('/profile')}}>Mis votos</p>
+                <p className="ml-2" >Mis votos</p>
               </button>
             </div>
 
@@ -120,7 +120,8 @@ const Header = () => {
                       </svg>
                       Crear publicación
                     </li>
-                    <li className="sm:hidden flex flex-row justify-center items-center cursor-pointer hover:text-blue-500" >
+                    <li className="sm:hidden flex flex-row justify-center items-center cursor-pointer hover:text-blue-500" onClick={() => {
+                     router.push('/profile')}}>
                       <Image
                         src={iconHeart}
                         alt="icon-heart"

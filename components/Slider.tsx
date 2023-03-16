@@ -81,13 +81,14 @@ const Slider: React.FC<ISliderProps> = ({title,subtitle}:ISliderProps) => {
             >
               <PrevButton />
             </div>
-            {data.results.results.map(
+            {data?.results.results.map(
               (pub: {
+                reference_link: string;
                 user: any;
                 id: string;
                 description: string;
                 title: string;
-                image: string;
+                image: any;
                 votes_count: number;
                 onClick: Function;
               }) => (
@@ -97,12 +98,13 @@ const Slider: React.FC<ISliderProps> = ({title,subtitle}:ISliderProps) => {
                     /* cardStyle="max-sm:ml-5 max-md:ml-18 max-lg:ml-16" */
                     cardStyle="m-auto"
                     fill="#D9D9D9"
-                    image={pub.user.image_url}
-                    title={pub.title}
+                    image={pub?.image?.image_url}
+                    title={pub?.title}
                     description={pub.description}
                     votes={pub.votes_count}
                     redirect={() => router.push(`/event/${pub.id}`)}
                     mutate={mutate}
+                    referenceLink={pub.reference_link}
                   />
                 </SwiperSlide>
               )

@@ -13,9 +13,9 @@ const CategoriesBar = () => {
   const {data} = useTags();
 
   return (
-    <div className="flex flex-col justify-between h-56 w-full m-auto md:w-10/12 lg:w-[1000px] xl:w-[970px]  bg-grey text-[#6E6A6C] pl-10 pr-10 pt-4 pb-4 mb-28 max-md:w-full  font-roboto">
-      <h1 className="font-semibold">!Hagámoslo más personal!</h1>
-      <h3 className="text-[19px]">
+    <div className="flex flex-col justify-between h-56 w-full m-auto  bg-grey text-[#6E6A6C] pl-10 pr-10 pt-4 pb-4 mb-28 font-roboto">
+      <h1 className="font-semibold text-[18px] sm:text-[25px]">!Hagámoslo más personal!</h1>
+      <h3 className="text-[13px] sm:text-[19px]">
         Selecciona tus intereses para brindarte sugerencia de acuerdo a tus
         gustos
       </h3>
@@ -29,22 +29,22 @@ const CategoriesBar = () => {
 
       breakpoints={{
         0: {
-          slidesPerView: 2.8,
+          slidesPerView: 2.6,
         },
         436: {
-          slidesPerView: 3.8,
+          slidesPerView: 3.3,
         },
         600: {
-          slidesPerView: 4.8,
+          slidesPerView: 4.6,
         },
         730: {
-          slidesPerView: 5.8,
+          slidesPerView: 5.6,
         },
         900: {
-          slidesPerView: 6.8,
+          slidesPerView: 6.6,
         },
         1200: {
-          slidesPerView: 6.8,
+          slidesPerView: 6.6,
         },
       }}
     >

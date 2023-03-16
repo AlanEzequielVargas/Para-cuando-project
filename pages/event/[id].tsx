@@ -10,9 +10,8 @@ export default function Event() {
   const router = useRouter();
   const { id } = router.query;
 
-
   const { data, error, isLoading } = usePublicationDetails(String(id));
-  console.log(data)
+  console.log(data);
 
   return (
     <Layout>
@@ -27,16 +26,21 @@ export default function Event() {
       ) : (
         <>
           <SearchNavBar />
-          <ArtistInfo
-            id={data.id}
-            image={''}
-            title={data.title}
-            description={data.description}
-            votes={data.votes_count}
-            content={data.content}
-          />
-          <CategoriesBar />
-          <Slider title='Recientes' subtitle='Las personas últimanete están hablando de esto'/>
+          <div style={{ maxWidth: '1000px' }} className=" md:w-11/12 m-auto">
+            <ArtistInfo
+              id={data.id}
+              image={''}
+              title={data.title}
+              description={data.description}
+              votes={data.votes_count}
+              content={data.content}
+            />
+            <CategoriesBar />
+            <Slider
+              title="Recientes"
+              subtitle="Las personas últimanete están hablando de esto"
+            />
+          </div>
         </>
       )}
     </Layout>
