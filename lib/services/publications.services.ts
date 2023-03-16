@@ -9,6 +9,14 @@ function usePublications() {
   };
 }
 
+function usePublicationsTypes() {
+  const {data,error,isLoading,mutate} = useSWR('/publications-types',fetcher);
+  return {
+    data,error,isLoading,mutate
+  };
+}
+
+
 function voteAndDeleteVote(id: string){
   return axios.post(`/publications/${id}/vote`,id);
 }
@@ -21,5 +29,5 @@ function createPublication(data: object){
 
 
 export {
-  usePublications,voteAndDeleteVote,createPublication
+  usePublications,voteAndDeleteVote,createPublication,usePublicationsTypes
 }

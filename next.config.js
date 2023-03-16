@@ -23,6 +23,17 @@ const nextConfig = {
 module.exports = {
   ...nextConfig,
   images: {
-    domains: ['paracuando.s3.sa-east-1.amazonaws.com'],
-  },
+
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'paracuando.s3.sa-east-1.amazonaws.com',
+      },
+    ],
+    minimumCacheTTL: 1500000,
+  }
 };
+
+
+
+

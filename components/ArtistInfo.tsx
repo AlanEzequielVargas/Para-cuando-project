@@ -44,7 +44,7 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
   
 
   return (
-    <div className="h-381 w-9/12 flex justify-between mb-52 mt-10 ml-auto mr-auto max-md:flex-col max-md:gap-y-5 max-md:w-11/12 max-md:h-550">
+    <div className="h-381 w-full flex justify-between mb-52 mt-10 ml-auto mr-auto max-md:flex-col max-md:gap-y-5 max-md:w-11/12 max-md:h-550">
       <div className="h-full flex flex-col justify-between pr-10 max-md:justify-between max-md:gap-y-5">
         <h2 className="font-bold">{content}</h2>
         <div className=" h-28">

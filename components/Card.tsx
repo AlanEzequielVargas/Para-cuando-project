@@ -19,6 +19,7 @@ interface ICardProps {
   votes: number;
   redirect: Function;
   mutate: Function;
+  referenceLink: string;
 }
 
 const Card: React.FC<ICardProps> = ({
@@ -31,6 +32,7 @@ const Card: React.FC<ICardProps> = ({
   votes,
   redirect,
   mutate,
+  referenceLink
 }: ICardProps) => {
 
   
@@ -48,32 +50,19 @@ const Card: React.FC<ICardProps> = ({
     });
   };
 
-  const [imageSrc, setImageSrc] = useState('');
 
-  // Parseamos la URL
-  try {
-    const url = new URL(`https://paracuando.s3.sa-east-1.amazonaws.com/${image}`);
-    const imagePath = url.pathname;
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      setImageSrc(imagePath);
-    }, [imagePath]);
-  } catch (error) {
-    console.error(error);
-  }
   
 
   return (
     <div
       id="card"
-      className={`bg-white relative font-roboto cursor-pointer border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
+      className={`bg-white relative font-roboto border flex flex-col justify-between w-299 h-454 mt-6 mb-6 shadow-lg rounded-3xl overflow-hidden max-sm:min-m-10 ${cardStyle}`}
     >
       <div className="w-full h-2/4 bg-black">
         
           <Image
             className="w-full h-full"
-            src={imageSrc}
+            src={image}
             alt="imagen de prueba"
             width={100}
             height={100}
@@ -99,14 +88,14 @@ const Card: React.FC<ICardProps> = ({
       </div>
 
       <div className="pl-5 pr-5 h-28">
-        <h1 className="font-bold" onClick={() => redirect()}>
+        <h1 className="font-bold cursor-pointer" onClick={() => redirect()}>
           {title}
         </h1>
         <p className="h-full w-full overflow-clip text-[#6E6A6C]">{description}</p>
       </div>
       <div className="pl-5 pr-5 pb-5 space-y-2">
         <a className="text-blue-600 pb-2 cursor-pointer font-semibold">
-          ladygaga.com
+          {referenceLink}
         </a>
         <div className="flex text-[#1A1E2E] font-bold">
           <IconPersonMini />

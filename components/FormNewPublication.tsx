@@ -1,5 +1,6 @@
 import { showAlert } from '@/lib/services/alerts.services';
-import { createPublication } from '@/lib/services/publications.services';
+import { createPublication, usePublicationsTypes } from '@/lib/services/publications.services';
+import { useTags } from '@/lib/services/tags.services';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -26,28 +27,9 @@ const FormNewPublication = () => {
     whyRecommend: string;
     referenceLink: string;
     images: File[];
-    cities_id: number;
     publications_types_id: number;
     tags: Array<any>;
   };
-
-  const types: Array<string> = [
-    'Marcas y tiendas',
-    'Artistas y conciertos',
-    'Torneos',
-  ];
-
-  const categories: Array<string> = [
-    'Ropa y Accesorios',
-    'Deportes',
-    'Conciertos',
-    'Meet & Greet',
-    'E-sport',
-    'Pop - Rock',
-    'Tecnología',
-    'Hogar - Decoración',
-    'Abastecimiento',
-  ];
 
   const [step, setStep] = useState<number>(1);
 
@@ -61,8 +43,7 @@ const FormNewPublication = () => {
       description: data.whyRecommend,
       content: data.type,
       reference_link: data.referenceLink,
-      cities_id: 1,
-      publications_types_id: 1,
+      publications_types_id: data.type,
       tags: [1],
     };
     console.log(publication);
@@ -138,6 +119,11 @@ const FormNewPublication = () => {
     }
   };
 
+  const {data: publicationTypes} = usePublicationsTypes();
+  const {data: tags} = useTags();
+  console.log("🚀 ~ file: FormNewPublication.tsx:141 ~ FormNewPublication ~ publicationTypes:", publicationTypes)
+  console.log("🚀 ~ file: FormNewPublication.tsx:143 ~ FormNewPublication ~ tags:", tags)
+
   return (
     <form className="p-2 w-full" onSubmit={handleSubmit(onSubmit)}>
       {step === 1 && (
@@ -202,9 +188,9 @@ const FormNewPublication = () => {
                   className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white"
                 >
                   <option value="">Tipo</option>
-                  {types.map((type) => (
-                    <option value={type} key={type}>
-                      {type}
+                  {publicationTypes?.results.results.map((type:any) => (
+                    <option value={type} key={type.id}>
+                      {type.name}
                     </option>
                   ))}
                 </select>
@@ -220,9 +206,9 @@ const FormNewPublication = () => {
                   className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white"
                 >
                   <option value="">Categoría</option>
-                  {categories.map((category) => (
-                    <option value={category} key={category}>
-                      {category}
+                  {tags?.results.results.map((category:any) => (
+                    <option value={category.name} key={category.id}>
+                      {category.id}
                     </option>
                   ))}
                 </select>

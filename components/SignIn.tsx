@@ -35,33 +35,17 @@ const SignIn = () => {
     };
     if (isValid) {
       signUp(user).then((res) => {
-        if (res.status === 201) {
-          showAlert(
-            'Felicidades!',
-            false,
-            'Ahora puedes iniciar sesión',
-            false,
-            2000,
-            'yellow',
-            false,
-            'rgba(0,0,123,0.4)',
-            '✔'
-          );
-          router.push('/login');
-        }
 
-        showAlert(
-          'Upss!',
-          true,
-          'Algo no anda bien, prueba nuevamente',
-          'error',
-          2000,
-          'yellow',
-          true,
-          'rgba(0,0,0,0.0)',
-          'X'
-        );
-      });
+        
+        if(res.status === 201){
+          showAlert('Felicidades!',false,'Ahora puedes iniciar sesión',false,2000,'yellow',false,'rgba(0,0,123,0.4)','✔'
+        )
+
+          router.push('/login');
+        }else{
+           showAlert('Upss!',false,'Algo no anda bien, prueba nuevamente','error',8000,'yellow',true,'rgba(0,0,0,0.0)','X')
+        }
+      })
     }
   };
 
