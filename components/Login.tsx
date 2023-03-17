@@ -22,17 +22,15 @@ const Login = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid },
+    formState: { isValid },
     watch,
   } = useForm<IFormInput>({ mode: 'onChange' });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(isValid);
     if (isValid) {
       const user = { email: data.email, password: data.contraseña };
       login(user)
         .then((res) => {
-          console.log(res);
           Cookies.set('token', res.data.token);
           dispatch(popUpLogin());
           router.push('/');
@@ -128,7 +126,7 @@ const Login = () => {
               />
               <div onClick={() => setShow(!show)}>
                 <EyeSlash
-                  styles="absolute right-12 bottom-[220px] sm:bottom-[200px] lg:bottom-[215px] lg:right-20 cursor-pointer"
+                  styles="absolute right-12 bottom-[230px] sm:bottom-[210px] lg:bottom-[225px] lg:right-20 cursor-pointer"
                   show={show}
                 />
               </div>

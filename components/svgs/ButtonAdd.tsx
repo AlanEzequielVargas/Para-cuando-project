@@ -6,7 +6,7 @@ interface IButtonAdd extends React.ComponentPropsWithoutRef<'svg'> {
 }
 
 const ButtonAdd: React.FC<IButtonAdd> = ({svgProps, rectProps}) => {
-  console.log({...svgProps})
+  
   return (
     
     <svg

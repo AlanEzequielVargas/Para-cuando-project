@@ -1,5 +1,8 @@
 import { showAlert } from '@/lib/services/alerts.services';
-import { createPublication, usePublicationsTypes } from '@/lib/services/publications.services';
+import {
+  createPublication,
+  usePublicationsTypes,
+} from '@/lib/services/publications.services';
 import { useTags } from '@/lib/services/tags.services';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,22 +16,14 @@ const FormNewPublication = () => {
 
   type FormValues = {
     title: string;
-    type: 'Marcas y tiendas' | 'Artistas y conciertos' | 'Torneos';
-    category:
-      | 'Ropa y Accesorios'
-      | 'Deportes'
-      | 'Conciertos'
-      | 'Meet & Greet'
-      | 'E-sport'
-      | 'Pop - Rock'
-      | 'Tecnología'
-      | 'Hogar - Decoración'
-      | 'Abastecimiento';
+    type: any;
+    category: any;
     whyRecommend: string;
     referenceLink: string;
     images: File[];
     publications_types_id: number;
     tags: Array<any>;
+    id: any;
   };
 
   const [step, setStep] = useState<number>(1);
@@ -36,17 +31,30 @@ const FormNewPublication = () => {
   const [imageFiles, setImageFiles] = useState<File[]>([]);
 
   const { register, handleSubmit, reset, watch } = useForm<FormValues>();
+
+  const [typeNames, setTypeNames] = useState('');
+  const [categoryNames, setCategoryNames] = useState('');
+
+  const { data: publicationTypes } = usePublicationsTypes();
+  const { data: tags } = useTags();
+
   const onSubmit = (data: FormValues) => {
-    console.log(data);
+    const typeName = publicationTypes.results.results.filter(
+      (type: any) => type.id === typeNames
+    );
+    const categoryName = tags.results.results.filter(
+      (tag: any) => tag.id === categoryNames
+    );
+
     const publication = {
       title: data.title,
       description: data.whyRecommend,
-      content: data.type,
+      content: `${typeName[0].name}/${categoryName[0]?.name}`,
       reference_link: data.referenceLink,
-      publications_types_id: data.type,
-      tags: [1],
+      publications_types_id: Number(data.type),
+      tags: [Number(data.category)],
     };
-    console.log(publication);
+
     createPublication(publication);
     showAlert(
       'Publicado!',
@@ -119,11 +127,6 @@ const FormNewPublication = () => {
     }
   };
 
-  const {data: publicationTypes} = usePublicationsTypes();
-  const {data: tags} = useTags();
-  console.log("🚀 ~ file: FormNewPublication.tsx:141 ~ FormNewPublication ~ publicationTypes:", publicationTypes)
-  console.log("🚀 ~ file: FormNewPublication.tsx:143 ~ FormNewPublication ~ tags:", tags)
-
   return (
     <form className="p-2 w-full" onSubmit={handleSubmit(onSubmit)}>
       {step === 1 && (
@@ -160,9 +163,9 @@ const FormNewPublication = () => {
 
       {step === 1 && (
         <div className="">
-          <div className="sm:mx-auto sm:w-4/6 mt-10 sm:max-w-screen-sm">
+          <div className="sm:mx-auto sm:w-4/6 mt-10 sm:max-w-screen-sm font-roboto">
             <h1 className="text-2xl font-bold mt-8">Publicación</h1>
-            <p className="text-gray-800 mt-2">Información básica</p>
+            <p className="text-[#6E6A6C] mt-2">Información básica</p>
             <div className="mb-4 mt-4 relative">
               <label
                 htmlFor="title"
@@ -186,10 +189,11 @@ const FormNewPublication = () => {
                   id="type"
                   {...register('type', { required: true })}
                   className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white"
+                  onChange={(e) => setTypeNames(e.target.value)}
                 >
                   <option value="">Tipo</option>
-                  {publicationTypes?.results.results.map((type:any) => (
-                    <option value={type} key={type.id}>
+                  {publicationTypes?.results.results.map((type: any) => (
+                    <option value={type.id} key={type.id}>
                       {type.name}
                     </option>
                   ))}
@@ -204,11 +208,12 @@ const FormNewPublication = () => {
                   id="category"
                   {...register('category', { required: true })}
                   className="w-full px-3 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white"
+                  onChange={(e) => setCategoryNames(e.target.value)}
                 >
                   <option value="">Categoría</option>
-                  {tags?.results.results.map((category:any) => (
-                    <option value={category.name} key={category.id}>
-                      {category.id}
+                  {tags?.results.results.map((category: any) => (
+                    <option value={category.id} key={category.id}>
+                      {category.name}
                     </option>
                   ))}
                 </select>

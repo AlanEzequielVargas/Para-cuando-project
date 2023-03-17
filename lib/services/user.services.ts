@@ -15,7 +15,6 @@ function useUserMe() {
   };
 }
 
-
 function getUserVotes(id:string) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const {data,error,isLoading,mutate} = useSWR(`/users/${id}/votes`,fetcher);
@@ -24,4 +23,15 @@ function getUserVotes(id:string) {
   };
 }
 
-export { useUserMe ,getUserVotes};
+function getUserPublications(id:string) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const {data,error,isLoading,mutate} = useSWR(`/users/${id}/publications`,fetcher);
+  return {
+    data,error,isLoading,mutate
+  };
+}
+function updateUserProfile(id: string,body:object){
+  return axios.put(`/users/${id}/publications`,body);
+}
+
+export { useUserMe ,getUserVotes,getUserPublications,updateUserProfile};
