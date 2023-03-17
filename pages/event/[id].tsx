@@ -22,7 +22,7 @@ export default function Event() {
     <Layout>
       <>
       {error ? (
-        <div className="relative w-screen h-screen flex flex-col justify-center items-center">
+        <div className="relative w-full h-screen flex flex-col justify-center items-center">
         <h1 className='text-4xl'>Ocurrió un error... 😰</h1>
         <Image src="/assets/error-guy-image.gif" width={300} height={300} alt="error-image" priority className='absolute -bottom-2'/>
       </div>
