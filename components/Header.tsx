@@ -27,7 +27,7 @@ const Header = () => {
     setShowMenu(!showMenu);
   };
 
-  const logged = Cookie.get('token') != undefined; //'asdasdasdasd'
+  const logged = Cookie.get('token') != undefined;
 
   const { data } = getProfile();
 
