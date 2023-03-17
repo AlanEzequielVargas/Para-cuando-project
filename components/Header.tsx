@@ -2,7 +2,7 @@ import { showAlert } from '@/lib/services/alerts.services';
 import { getProfile } from '@/lib/services/auth.services';
 import { popUpLoginClose } from '@/slices/popUpLoginSlice';
 import { RootState } from '@/store/store';
-import Cookies from 'js-cookie';
+import Cookie from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -27,13 +27,19 @@ const Header = () => {
     setShowMenu(!showMenu);
   };
 
+  const logged = Cookie.get('token') === '';
+
   const { data } = getProfile();
 
   return (
-    <div className={`${isLogged ? 'bg-[#1A1E2E]' : 'bg-black'} h-16 m-auto`}>
+    <div
+      className={`${
+        !logged ? 'bg-[#1A1E2E]' : 'bg-black'
+      } h-16 m-auto font-roboto md:px-4`}
+    >
       <div className="flex flex-row justify-between items-center px-5 py-4">
         <LogoPC />
-        {isLogged ? (
+        {!logged ? (
           <div className="flex flex-row gap-9">
             <div className="hidden sm:flex flex-row items-center text-white text-sm gap-9">
               <button
@@ -56,8 +62,12 @@ const Header = () => {
                 </svg>
                 <p className="text-blue-600">Crear publicación</p>
               </button>
-              <button className="hidden sm:flex flex-row items-center text-white text-sm " onClick={() => {
-                     router.push('/profile')}}>
+              <button
+                className="hidden sm:flex flex-row items-center text-white text-sm "
+                onClick={() => {
+                  router.push('/profile');
+                }}
+              >
                 <Image
                   src={iconHeart}
                   alt="icon-heart"
@@ -100,7 +110,7 @@ const Header = () => {
               </button>
 
               <div
-                className={`bg-white rounded-xl absolute w-full top-12 z-10 transition-all duration-500 ease-in-out ${
+                className={`bg-white rounded-xl border shadow-sm absolute w-full top-12 z-10 transition-all duration-500 ease-in-out ${
                   showMenu ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
@@ -127,9 +137,12 @@ const Header = () => {
                       Crear publicación
                     </li>
 
-                    <li className="sm:hidden flex flex-row justify-center items-center cursor-pointer hover:text-blue-500" onClick={() => {
-                     router.push('/profile')}}>
-
+                    <li
+                      className="sm:hidden flex flex-row justify-center items-center cursor-pointer hover:text-blue-500"
+                      onClick={() => {
+                        router.push('/profile');
+                      }}
+                    >
                       <Image
                         src={iconHeart}
                         alt="icon-heart"
@@ -155,7 +168,7 @@ const Header = () => {
                     <li
                       className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500"
                       onClick={async () => {
-                        Cookies.remove('token');
+                        Cookie.remove('token');
                         toggleMenu(); // cierra el menú
                         await new Promise(() => {
                           dispatch(popUpLoginClose()); // cierra la sesión

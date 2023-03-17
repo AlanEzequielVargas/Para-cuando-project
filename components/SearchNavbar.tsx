@@ -10,13 +10,16 @@ const SearchNavBar = () => {
   const router = useRouter();
 
   return (
-    <div className="relative font-roboto z-20">
+    <div className="relative font-roboto z-20 shadow-md">
       <div
         id="white-navbar"
-        className="h-24 flex justify-evenly items-center shadow-md max-sm:justify-evenly"
+        className="h-24 md:w-10/12 lg:max-w-[1000px] m-auto flex justify-between items-center max-md:justify-evenly"
       >
-        <div style={{borderColor: '#A7A6A7'}} className="w-96 flex justify-evenly max-sm:hidden 
-text-[#A7A6A7] max-w-[1280px]">
+        <div
+          style={{ borderColor: '#A7A6A7' }}
+          className="w-96 flex justify-evenly max-sm:hidden 
+text-[#A7A6A7] max-w-[1280px]"
+        >
           <div onClick={() => router.push('/brands')}>
             <ButtonSection
               name="Marcas y tiendas"
