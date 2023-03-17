@@ -48,7 +48,7 @@ const Card: React.FC<ICardProps> = ({
       behavior: 'smooth',
     });
   };
-  const logged = Cookies.get('token') === '';
+  const logged = Cookies.get('token') === undefined;
 
   return (
     <div
