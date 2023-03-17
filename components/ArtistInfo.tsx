@@ -1,11 +1,17 @@
+import { showAlert } from '@/lib/services/alerts.services';
+import { getProfile } from '@/lib/services/auth.services';
 import {
   usePublications,
   voteAndDeleteVote,
 } from '@/lib/services/publications.services';
+import { getUserVotes } from '@/lib/services/user.services';
+import { toggleShowLogin } from '@/slices/showLoginSlice';
+import { RootState } from '@/store/store';
 import Cookie from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { mutate } from 'swr';
 import ButtonAction from './atoms/ButtonVote';
 import IconPersonMini from './svgs/IconPersonMini';
@@ -18,6 +24,7 @@ interface IArtistInfoProps {
   votes: number;
   content: string;
   referenceLink: string;
+  mutate: Function;
 }
 
 const ArtistInfo: React.FC<IArtistInfoProps> = ({
@@ -28,11 +35,29 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
   content,
   id,
   referenceLink,
+  mutate,
 }: IArtistInfoProps) => {
-  const [isVoted, setIsVoted] = useState(false);
-  const { mutate } = usePublications();
+  const { data } = getProfile();
+
+  const logged = Cookie.get('token') != undefined;
+  const { data: userVotes } = getUserVotes(data?.results.id);
+
+  const voted = userVotes?.results.results.some(
+    (item: any) => item.publications_id === id
+  );
+
+  const [isVoted, setIsVoted] = useState(voted);
 
   const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <div className="h-381 w-full flex justify-between mb-52 mt-10 ml-auto mr-auto max-md:flex-col max-md:gap-y-5 max-md:w-11/12 max-md:h-550">
@@ -54,18 +79,43 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
         <div
           className="max-md:hidden"
           onClick={(e) => {
-            if (Cookie.get('token')) {
-              voteAndDeleteVote(id).then(() => {
-                mutate();
+            if (logged) {
+              voteAndDeleteVote(id).then((res) => {
+                if (voted) {
+                  showAlert(
+                    '',
+                    true,
+                    'Quitaste tu voto de esta publicación',
+                    'success',
+                    2000,
+                    'white',
+                    false,
+                    'rgb(0 0 0 / 0.0)',
+                    '💔'
+                  );
+                } else {
+                  showAlert(
+                    '',
+                    true,
+                    'Tu voto fue enviado con exito!',
+                    'success',
+                    2000,
+                    'white',
+                    false,
+                    'rgb(0 0 0 / 0.0)',
+                    '❤'
+                  );
+                }
               });
-              setIsVoted(!isVoted);
               e.stopPropagation();
+              mutate();
             } else {
-              router.push('/login');
+              scrollToTop();
+              dispatch(toggleShowLogin());
             }
           }}
         >
-          <ButtonAction isVoted={isVoted} />
+          <ButtonAction isVoted={voted} />
         </div>
       </div>
       <div className="bg-black max-sm:w-full md:w-[539px] ">
@@ -79,7 +129,7 @@ const ArtistInfo: React.FC<IArtistInfoProps> = ({
       </div>
 
       <div className="md:hidden">
-        <ButtonAction isVoted={isVoted} />
+        <ButtonAction isVoted={voted} />
       </div>
     </div>
   );

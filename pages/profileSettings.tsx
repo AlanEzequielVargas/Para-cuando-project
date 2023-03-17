@@ -3,10 +3,12 @@ import Layout from '@/components/Layout';
 import ButtonAdd from '@/components/svgs/ButtonAdd';
 import { showAlert } from '@/lib/services/alerts.services';
 import { getProfile } from '@/lib/services/auth.services';
+import { useTags } from '@/lib/services/tags.services';
 import { updateUserProfile } from '@/lib/services/user.services';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import footerImage from '../public/assets/footer-image.jpg';
 
@@ -18,16 +20,20 @@ export default function ProfileSettings() {
     last_name: string;
     code_phone: number;
     phone: number;
+    tags: Array<any>;
+    category: number;
   };
   const userId = info?.results.id;
+
   const { register, handleSubmit, reset, watch } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
     const perfilData = {
       first_name: data.first_name,
       last_name: data.last_name,
-      code_phone: 549345,
-      phone: 4181695,
+      code_phone: 123123223,
+      phone: 4181123123695,
+      tags: [data.category],
     };
 
     updateUserProfile(userId, perfilData);
@@ -45,6 +51,9 @@ export default function ProfileSettings() {
 
     router.push('/profile');
   };
+
+  const [showCategories, setShowCategories] = useState(false);
+  const { data: tags } = useTags();
 
   return (
     <Layout noFooter>
@@ -99,25 +108,32 @@ export default function ProfileSettings() {
           </div>
           <div>
             <h1 className="mb-10">Mis intereses</h1>
-            <div className="flex justify-between max-md:flex-col max-md:items-center">
-              <ButtonAdd
-                svgProps={{
-                  className:
-                    'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
-                }}
-              />
-              <ButtonAdd
-                svgProps={{
-                  className:
-                    'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
-                }}
-              />
-              <ButtonAdd
-                svgProps={{
-                  className:
-                    'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
-                }}
-              />
+            <div className="relative flex justify-between max-md:flex-col max-md:items-center">
+              <div>
+                <ButtonAdd
+                  svgProps={{
+                    className:
+                      'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
+                  }}
+                />
+              </div>
+
+              <div>
+                <ButtonAdd
+                  svgProps={{
+                    className:
+                      'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
+                  }}
+                />
+              </div>
+              <div>
+                <ButtonAdd
+                  svgProps={{
+                    className:
+                      'w-300 h-152 bg-GRAY2 rounded-2xl max-lg:w-52 max-md:mb-10 max-md:w-full',
+                  }}
+                />
+              </div>
             </div>
           </div>
           <button className="w-52 m-auto" type="submit">

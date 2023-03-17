@@ -58,7 +58,7 @@ export default function Profile() {
               id={pub.id}
               /* cardStyle="max-sm:ml-5 max-md:ml-18 max-lg:ml-16" */
               cardStyle="m-auto"
-              fill="#D9D9D9"
+              
               image={pub.images[0]?.image_url}
               title={pub?.title}
               description={pub.description}
@@ -77,7 +77,7 @@ export default function Profile() {
               id={pub?.id}
               /* cardStyle="max-sm:ml-5 max-md:ml-18 max-lg:ml-16" */
               cardStyle="m-auto"
-              fill="#D9D9D9"
+              
               image={pub?.images[0]?.image_url}
               title={pub?.title}
               description={pub?.description}

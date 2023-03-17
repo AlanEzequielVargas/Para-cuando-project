@@ -2,15 +2,19 @@ import { voteAndDeleteVote } from '@/lib/services/publications.services';
 import { popUpLogin } from '@/slices/popUpLoginSlice';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconHeart from './svgs/IconHeart';
 import IconPersonMini from './svgs/IconPersonMini';
 import { useState } from 'react';
+import { getProfile } from '@/lib/services/auth.services';
+import { getUserVotes } from '@/lib/services/user.services';
+import { RootState } from '@/store/store';
+import { showAlert } from '@/lib/services/alerts.services';
 
 interface ICardProps {
   id: string;
   cardStyle: string;
-  fill: string;
+
   image: string;
   title: string;
   description: string;
@@ -23,7 +27,7 @@ interface ICardProps {
 const Card: React.FC<ICardProps> = ({
   id,
   cardStyle,
-  fill,
+  
   image,
   title,
   description,
@@ -43,6 +47,17 @@ const Card: React.FC<ICardProps> = ({
       behavior: 'smooth',
     });
   };
+  const { data } = getProfile();
+
+
+  const isLogged = useSelector((state: RootState) => state.popUpLogin.value);
+
+  const { data: userVotes } = getUserVotes(data?.results.id);
+ 
+
+  const voted = userVotes?.results.results.some((item:any) => item.publications_id === id);
+  
+  const [isVoted, setIsVoted] = useState(voted);
 
   return (
     <div
@@ -65,13 +80,38 @@ const Card: React.FC<ICardProps> = ({
               setColor(!colorHeart);
               voteAndDeleteVote(id).then(() => mutate());
               e.stopPropagation();
+              if(isVoted){
+                showAlert(
+                  '',
+                  true,
+                  'Quitaste tu voto de esta publicación',
+                  'success',
+                  2000,
+                  'white',
+                  false,
+                  'rgb(0 0 0 / 0.0)',
+                  '💔'
+                );
+              }else{
+                showAlert(
+                  '',
+                  true,
+                  'Tu voto fue enviado con exito!',
+                  'success',
+                  2000,
+                  'white',
+                  false,
+                  'rgb(0 0 0 / 0.0)',
+                  '❤'
+                );
+              }
             } else {
               scrollToTop();
               dispatch(popUpLogin());
             }
           }}
         >
-          <IconHeart fill={colorHeart ? fill : '#FF64BC'} />
+          <IconHeart fill={isVoted ? '#FF64BC' : '#D9D9D9'} />
         </div>
       </div>
       <div className="font-roboto flex items-start h-full w-full pr-16 md:pr-12 pl-4 md:pl-10 py-4">

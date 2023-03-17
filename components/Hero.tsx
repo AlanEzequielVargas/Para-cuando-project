@@ -27,7 +27,7 @@ const Hero = () => {
           <div className="w-52">
             <LogoParaCuando color="#FFFFFF" />
           </div>
-          <div className="relative w-[343px] sm:w-[465px]" onClick={() => router.push('/search')}>
+          <div className="relative w-[343px] sm:w-[465px]" >
             <Input />
           </div>
           <div className="flex flex-row justify-around text-sm w-[362px] sm:w-[400px]">

@@ -9,6 +9,13 @@ function usePublications() {
   };
 }
 
+function usePublicationsByQuery(word:string) {
+  const {data,error,isLoading,mutate} = useSWR(`/publications?title=${word}`,fetcher);
+  return {
+    data,error,isLoading,mutate
+  };
+}
+
 function usePublicationsTypes() {
   const {data,error,isLoading,mutate} = useSWR('/publications-types',fetcher);
   return {
@@ -29,5 +36,5 @@ function createPublication(data: object){
 
 
 export {
-  usePublications,voteAndDeleteVote,createPublication,usePublicationsTypes
+  usePublications,voteAndDeleteVote,createPublication,usePublicationsTypes,usePublicationsByQuery
 }

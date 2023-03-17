@@ -30,8 +30,8 @@ function getUserPublications(id:string) {
     data,error,isLoading,mutate
   };
 }
-function updateUserProfile(id: string,body:object){
-  return axios.put(`/users/${id}/publications`,body);
+function updateUserProfile(id: any,body:any){
+  return axios.put(`/users/${id}`,body);
 }
 
 export { useUserMe ,getUserVotes,getUserPublications,updateUserProfile};
