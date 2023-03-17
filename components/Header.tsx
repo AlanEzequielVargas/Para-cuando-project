@@ -27,19 +27,19 @@ const Header = () => {
     setShowMenu(!showMenu);
   };
 
-  const logged = Cookie.get('token') === '';
+  const logged = Cookie.get('token') != undefined;
 
   const { data } = getProfile();
 
   return (
     <div
       className={`${
-        !logged ? 'bg-[#1A1E2E]' : 'bg-black'
+        logged ? 'bg-[#1A1E2E]' : 'bg-black'
       } h-16 m-auto font-roboto md:px-4`}
     >
       <div className="flex flex-row justify-between items-center px-5 py-4">
         <LogoPC />
-        {!logged ? (
+        {logged ? (
           <div className="flex flex-row gap-9">
             <div className="hidden sm:flex flex-row items-center text-white text-sm gap-9">
               <button
@@ -87,7 +87,7 @@ const Header = () => {
               </button>
             </div>
 
-            <div className="flex-col flex text-gray-800 relative">
+            <div className="flex-col flex bg text-gray-800 relative">
               <button
                 className="flex-row flex items-center text-white"
                 onClick={toggleMenu}
@@ -110,7 +110,7 @@ const Header = () => {
               </button>
 
               <div
-                className={`bg-white rounded-xl border shadow-sm absolute w-full top-12 z-10 transition-all duration-500 ease-in-out ${
+                className={`bg-white rounded-xl border shadow-sm absolute w-full top-12 z-30 transition-all duration-500 ease-in-out ${
                   showMenu ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
@@ -167,13 +167,13 @@ const Header = () => {
                     </li>
                     <li
                       className="flex flex-row justify-center items-center cursor-pointer hover:text-blue-500"
-                      onClick={async () => {
+                      onClick={() => {
                         Cookie.remove('token');
                         toggleMenu(); // cierra el menú
-                        await new Promise(() => {
-                          dispatch(popUpLoginClose()); // cierra la sesión
-                          router.push('/'); // redirige a la página principal
-                        }); // espera 500ms (o el tiempo necesario para que el menú se cierre completamente)
+                        
+                        dispatch(popUpLoginClose()); // cierra la sesión
+                        location.reload(); // redirige a la página principal
+                        // espera 500ms (o el tiempo necesario para que el menú se cierre completamente)
                       }}
                     >
                       <Image
