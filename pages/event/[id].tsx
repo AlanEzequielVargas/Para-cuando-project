@@ -13,7 +13,7 @@ export default function Event() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, error, isLoading } = usePublicationDetails(String(id));
+  const { data, error, isLoading ,mutate } = usePublicationDetails(String(id));
   const imagePublication = usePublications().data?.results.results.filter(
     (pub: any) => pub.id === id
   );
@@ -41,6 +41,7 @@ export default function Event() {
               votes={data.votes_count}
               content={data.content}
               referenceLink={data.reference_link}
+              mutate={mutate}
             />
             <CategoriesBar />
             <Slider

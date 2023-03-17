@@ -1,11 +1,12 @@
+import { toggleinputValue } from '@/slices/inputValueSlice';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import ButtonNextSection from './atoms/ButtonNextSection';
-import ButtonSection from './atoms/ButtonSection';
 import Input from './atoms/Input';
 
 const EventFinderNav = () => {
   const [showList, setShowList] = useState(false);
-
+  const dispatch = useDispatch()
   return (
     <div
       id="white-navbar"
@@ -24,7 +25,9 @@ const EventFinderNav = () => {
 
           <nav className="w-full ">
             <ul className="flex justify-between mt-6 ">
-              <li className="cursor-pointer pb-2 mt-2 border-b-4 border-white border-solid hover:border-b-4 hover:border-[#1B4DB1] ">
+              <li className="cursor-pointer pb-2 mt-2 border-b-4 border-white border-solid hover:border-b-4 hover:border-[#1B4DB1]" onClick={() => {dispatch(toggleinputValue(""))
+            
+            }}>
                 Todos los resultados
               </li>
               <li className="cursor-pointer pb-2 mt-2 border-b-4 border-white border-solid hover:border-b-4 hover:border-[#1B4DB1]">

@@ -1,5 +1,7 @@
 import { showAlert } from '@/lib/services/alerts.services';
-import { voteAndDeleteVote } from '@/lib/services/publications.services';
+import { getProfile } from '@/lib/services/auth.services';
+import { usePublications, voteAndDeleteVote } from '@/lib/services/publications.services';
+import { getUserVotes } from '@/lib/services/user.services';
 import { toggleShowLogin } from '@/slices/showLoginSlice';
 import { RootState } from '@/store/store';
 import Cookies from 'js-cookie';
@@ -13,7 +15,6 @@ import IconPersonMini from './svgs/IconPersonMini';
 interface ICardProps {
   id: string;
   cardStyle: string;
-  fill: string;
   image: string;
   title: string;
   description: string;
@@ -26,7 +27,6 @@ interface ICardProps {
 const Card: React.FC<ICardProps> = ({
   id,
   cardStyle,
-  fill,
   image,
   title,
   description,
@@ -35,12 +35,24 @@ const Card: React.FC<ICardProps> = ({
   mutate,
   referenceLink,
 }: ICardProps) => {
-  const [colorHeart, setColor] = useState(true);
+ 
 
-  //redux configuracion
   const dispatch = useDispatch();
 
+  const { data } = getProfile();
+
+
   const isLogged = useSelector((state: RootState) => state.popUpLogin.value);
+
+  const { data: userVotes } = getUserVotes(data?.results.id);
+
+
+  const voted = userVotes?.results.results.some((item:any) => item.publications_id === id);
+  
+  const [isVoted, setIsVoted] = useState(voted);
+
+  
+
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -68,27 +80,40 @@ const Card: React.FC<ICardProps> = ({
           className="h-0 flex justify-end items-center pr-5 z-30 absolute right-0 top-[215px]"
           onClick={(e) => {
             if (!logged) {
-              setColor(!colorHeart);
               voteAndDeleteVote(id).then(() => mutate());
               e.stopPropagation();
-              showAlert(
-                '',
-                true,
-                'Tu voto fue enviado con exito!',
-                'success',
-                2000,
-                'white',
-                false,
-                'rgb(0 0 0 / 0.0)',
-                '❤'
-              );
+              if(isVoted){
+                showAlert(
+                  '',
+                  true,
+                  'Quitaste tu voto de esta publicación',
+                  'success',
+                  2000,
+                  'white',
+                  false,
+                  'rgb(0 0 0 / 0.0)',
+                  '💔'
+                );
+              }else{
+                showAlert(
+                  '',
+                  true,
+                  'Tu voto fue enviado con exito!',
+                  'success',
+                  2000,
+                  'white',
+                  false,
+                  'rgb(0 0 0 / 0.0)',
+                  '❤'
+                );
+              }
             } else {
               scrollToTop();
               dispatch(toggleShowLogin());
             }
           }}
         >
-          <IconHeart fill={colorHeart ? fill : '#FF64BC'} />
+          <IconHeart fill={isVoted ? '#FF64BC' : '#D9D9D9'} />
         </div>
       </div>
 
